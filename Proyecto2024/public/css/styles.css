@@ -1,0 +1,22 @@
+header {
+    background-color: #40606f;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  .navbar-custom {
+    background-color: #183440;
+  }
+  .title {
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  .logo {
+    width: 100px;
+    height: auto;
+  }
+
+
+/*COLORES A TENER EN CUENTA color oscuro #4d646f
+color claro #607d8b/*
