@@ -1,3 +1,19 @@
+
+/*------------------------------FOOTER------------------------------*/
+.section-content {
+    min-height: 450px;
+}
+
+footer {
+    background-color: #183440;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+/*------------------------------HEADER------------------------------*/
 header {
     background-color: #40606f;
     color: #fff;
@@ -16,7 +32,6 @@ header {
     width: 100px;
     height: auto;
   }
-
 
 /*COLORES A TENER EN CUENTA color oscuro #4d646f
 color claro #607d8b/*
