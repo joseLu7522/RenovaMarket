@@ -32,7 +32,7 @@
                         <a href="{{ route('home') }}" class="nav-link">Iniciar Sesión</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('home') }}" class="nav-link">Registrarse</a>
+                        <a href="{{ route('signupForm') }}" class="nav-link">Registrarse</a>
                     </li>
                 @endauth
             </ul>
