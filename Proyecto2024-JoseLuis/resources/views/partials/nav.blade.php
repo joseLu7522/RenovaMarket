@@ -15,15 +15,19 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home') }}">Tienda Online</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Compra-Venta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Subir producto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Contacto</a>
-                </li>
+                @auth
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Compra-Venta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Subir producto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Contacto</a>
+                    </li>
+
+                @endauth
+
             </ul>
             <ul class="navbar-nav">
                 @auth

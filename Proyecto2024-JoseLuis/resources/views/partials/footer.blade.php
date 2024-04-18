@@ -28,7 +28,7 @@
                 <div class="col-md-7 col-lg-8 text-center text-md-start">
                     <div class="p-3">
                         © 2024 Jose Luis Sanchez Bosch
-                        <a class="text-white" href="https://mdbootstrap.com/">RenovaMarket</a>
+                        <a class="text-white" href="{{ route('home') }}">RenovaMarket</a>
                     </div>
                 </div>
                 <!--ICONOS REDES SOCIALES-->
