@@ -1,20 +1,9 @@
-.login,
-.image {
-  min-height: 100vh;
-}
-
-.bg-image {
-  background-image: url('https://bootstrapious.com/i/snippets/sn-page-split/bg.jpg');
-  background-size: cover;
-  background-position: center center;
-}
-
-/*------------------------------FOOTER------------------------------*/
+/*-----------------MINIMO ALTURA DEL CONTENEDOR---------------------*/
 .section-content {
     background-color: #dbeaff;
     min-height: 450px;
 }
-
+/*------------------------------FOOTER------------------------------*/
 footer {
     background-color: #183440;
     color: #fff;
@@ -59,4 +48,25 @@ header {
     height: auto;
 }
 /*COLORES A TENER EN CUENTA color oscuro #4d646f
-color claro #607d8b/*
+color claro #607d8b*/
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://bootstrapious.com/i/snippets/sn-page-split/bg.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+.gradient-custom-2 {
+    background: #fccb90;
+    background: -webkit-linear-gradient(
+        to right,
+        #ee7724,
+        #d8363a,
+        #dd3675,
+        #b44593
+    );
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
