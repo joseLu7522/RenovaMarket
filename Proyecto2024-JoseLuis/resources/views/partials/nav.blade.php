@@ -32,6 +32,32 @@
             </ul>
             <ul class="navbar-nav">
                 @auth
+                <a class="nav-link" href="#">
+                    <i class="bi bi-cart4"></i>
+                  </a>
+                  <div class="dropdown show">
+                    <a class="btn dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-globe2"></i> Idiomas
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#">Perfil</a>
+                      <a class="dropdown-item" href="#">Editar perfil</a>
+                      <a class="dropdown-item" href="#">Subir producto</a>
+                      <a class="dropdown-item"href="#"> Cerrar sesión</a>
+                    </div>
+                  </div>
+
+                    <div class="dropdown show">
+                        <a class="btn dropdown-toggle nav-link" href="{{ route('home', Auth::user()) }}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-person-lines-fill"></i>{{ ucfirst(Auth::user()->name) }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Perfil</a>
+                          <a class="dropdown-item" href="#">Editar perfil</a>
+                          <a class="dropdown-item" href="#">Subir producto</a>
+                          <a class="dropdown-item"href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i> Cerrar sesión</a>
+                        </div>
+                      </div>
                 @else
                     <li class="nav-item">
                         <a href="{{ route('loginForm') }}" class="nav-link">Iniciar Sesión</a>
