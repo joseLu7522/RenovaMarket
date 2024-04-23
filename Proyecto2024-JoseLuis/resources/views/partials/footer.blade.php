@@ -4,15 +4,13 @@
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-xl-6 mx-auto mt-3">
                     <h6 class="text-uppercase mb-4 font-weight-bold">RENOVAMARKET</h6>
-                    <p>
-                        "¡Bienvenido a RenovaMarket! Tu destino confiable para comprar y vender una amplia variedad de
-                        productos de segunda mano. Explora nuestro catálogo diverso y únete a una comunidad de
-                        compradores y vendedores apasionados. ¡Encuentra la tuya hoy!"
+                    <p>"{{ __('¡Bienvenido a RenovaMarket! Tu destino confiable para comprar y vender una amplia variedad de productos de segunda mano.') }}
+                        {{ __('Explora nuestro catálogo diverso y únete a una comunidad de compradores y vendedores apasionados. ¡Encuentra la tuya hoy!') }}"
                     </p>
                 </div>
                 <!--INFORMACIÓN DE CONTACTO-->
                 <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
-                    <h6 class="text-uppercase mb-4 font-weight-bold">CONTACTO</h6>
+                    <h6 class="text-uppercase mb-4 font-weight-bold">{{ __('CONTACTO') }}</h6>
                     <p><i class="bi bi-houses-fill"></i> Carrer els Ports, 8, 46940 Manises, Valencia</p>
                     <p><i class="bi bi-envelope-at-fill"></i> renovaMarket@gmail.com</p>
                     <p><i class="bi bi-telephone-fill"></i> 601 29 18 19</p>

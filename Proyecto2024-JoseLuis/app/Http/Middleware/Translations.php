@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\App;
 
+
+
 class Translations
 {
     /**
@@ -16,9 +18,10 @@ class Translations
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(session()->has('language')){
-            App::setLocale(session()->get('language'));
+        if (session()->has('locale')) {
+            App::setLocale(session()->get('locale'));
         }
         return $next($request);
     }
+
 }

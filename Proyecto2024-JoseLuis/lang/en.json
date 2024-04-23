@@ -1,14 +1,29 @@
 {
     "Inicio":"Home",
-    "Tienda Online":"Online store",
-    "Compra-Venta":"Buy-sell",
+    "Tienda online":"Online store",
+    "Compra-venta":"Buy-sell",
     "Subir producto":"Upload product",
-    "Contacto":"Contact",
+    "CONTACTO":"Contact",
     "Perfil":"Profile",
     "Editar perfil":"Edit profile",
     "Cerrar sesión":"Log out",
     "Iniciar Sesión":"Log in",
-    "Registrarse":"Sign up"
+    "Registrarse":"Sign up",
+
+    "¡Bienvenido a RenovaMarket! Tu destino confiable para comprar y vender una amplia variedad de productos de segunda mano.":"¡Welcome to RenovaMarket! Your trusted destination to buy and sell a wide variety of second hand products.",
+    "Explora nuestro catálogo diverso y únete a una comunidad de compradores y vendedores apasionados. ¡Encuentra la tuya hoy!":"Explore our diverse catalog and join a community of passionate buyers and sellers  ¡find yours today!",
+
+    "¡Bienvenido a RenovaMarket!":"¡Welcome to RenovaMarket!",
+    "¡Dale una nueva vida a los objetos que ya no utilizas! En RenovaMarket, creemos en el valor de la reutilización y te ofrecemos una plataforma segura y fácil de usar para":"¡Give a new life to the objects you no longer use! At RenovaMarket, we believe in the value of reuse and we offer you a safe and easy-to-use platform",
+    "vender tus productos de segunda mano. Al mismo tiempo, puedes descubrir tesoros escondidos que otros han puesto a la venta. ¡Únete a nosotros y forma parte de la economía circular!":"to sell your second-hand products. At the same time, you can discover hidden treasures that others have put up for sale - join us and be part of the circular economy!",
+
+    "¡Descubre nuestra variedad de productos de segunda mano y nuevos!":"¡Discover our variety of second-hand and new products!",
+    "En RenovaMarket, no solo encontrarás una amplia gama de productos de segunda mano, sino también una selección de productos nuevos de alta calidad.":"At RenovaMarket, you will not only find a wide range of second hand products, but also a selection of high quality new products.",
+    "Ya sea que estés buscando un libro raro, un mueble vintage o un gadget tecnológico nuevo, seguro que lo encontrarás en nuestra plataforma. ¡Explora y descubre tus próximas adquisiciones!":"Whether you're looking for a rare book, a vintage piece of furniture or a new tech gadget, you're sure to find it on our platform. ¡Browse and discover your next acquisitions!",
+
+    "¡Únete a nuestra comunidad y encuentra lo que necesitas!":"¡Join our community and find what you need!",
+    "RenovaMarket es más que una plataforma de compra y venta, es una comunidad de personas que valoran la reutilización y el intercambio. Al unirte a nosotros, no solo tendrás la oportunidad":"RenovaMarket is more than a buying and selling platform, it is a community of people who value reuse and exchange. By joining us, you will not only have the opportunity",
+    "de comprar y vender, sino también de conectar con otros usuarios, compartir tus intereses y contribuir a un consumo más sostenible. ¡Únete a RenovaMarket y encuentra exactamente lo que necesitas!":"to buy and sell, but also to connect with other users, share your interests and contribute to a more sustainable consumption. ¡Join RenovaMarket and find exactly what you need!"
 
 
 

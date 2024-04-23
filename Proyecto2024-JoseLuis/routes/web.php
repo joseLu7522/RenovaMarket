@@ -31,3 +31,6 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('change-language', [LanguageController::class, 'changeLanguage'])->name('change-language');
 
+Route::get('/tienda', function () {
+    return view('online_store.index');
+})->name('shop');

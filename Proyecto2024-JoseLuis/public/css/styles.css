@@ -1,7 +1,8 @@
 /*-----------------MINIMO ALTURA DEL CONTENEDOR---------------------*/
 .section-content {
-    background-color: #dbeaff;
     min-height: 450px;
+    /*background-color: #dbeaff;*/
+
 }
 /*------------------------------FOOTER------------------------------*/
 footer {
@@ -19,31 +20,51 @@ header {
     color: #fff;
     padding: 10px;
     text-align: center;
-  }
-  .navbar-custom {
+}
+.navbar-custom {
     background-color: #183440;
-  }
-  .title {
+}
+.title {
     font-size: 30px;
     margin-bottom: 10px;
     font-weight: bold;
-  }
-  .logo {
+}
+.logo {
     width: 100px;
     height: auto;
-  }
-/*---------------------------------------------REGISTRARSE-----------------------------------------------*/
-.register-image{
-    background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
-          height: 300px;
 }
-.register-card{
+
+/*------------------------------CAROUSEL------------------------------*/
+.dark-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.text-light {
+    color: #fff;
+    text-align: center;
+}
+
+.carousel-image {
+    height: 600px;
+    object-fit: cover;
+}
+/*---------------------------------------------REGISTRARSE-----------------------------------------------*/
+.register-image {
+    background-image: url("https://mdbootstrap.com/img/new/textures/full/171.jpg");
+    height: 300px;
+}
+.register-card {
     margin-top: -100px;
     background: hsla(0, 0%, 100%, 0.8);
     backdrop-filter: blur(30px);
 }
 
-.img-user{
+.img-user {
     width: 50px;
     height: auto;
 }
@@ -51,13 +72,13 @@ header {
 color claro #607d8b*/
 .login,
 .image {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 .bg-image {
-  background-image: url('https://bootstrapious.com/i/snippets/sn-page-split/bg.jpg');
-  background-size: cover;
-  background-position: center center;
+    background-image: url("https://bootstrapious.com/i/snippets/sn-page-split/bg.jpg");
+    background-size: cover;
+    background-position: center center;
 }
 .gradient-custom-2 {
     background: #fccb90;
@@ -70,3 +91,13 @@ color claro #607d8b*/
     );
     background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
+/*------------------------------BANDERA------------------------------*/
+.flag {
+    height: 17px;
+    width: auto;
+}
+.flag.selected {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
