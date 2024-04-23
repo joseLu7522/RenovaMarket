@@ -7,10 +7,42 @@
 
     <style>
 
-        .product-card {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.product-card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
 
-        }
+    .product-image {
+        height: 200px; /* Altura deseada */
+        object-fit: cover; /* Para ajustar la imagen dentro del contenedor sin deformarla */
+        width: 100%; /* Ancho completo */
+    }
+
+    .product-name {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .product-details {
+        margin-top: 10px;
+    }
+
+    .product-price {
+        font-size: 16px;
+    }
+
+    .add-to-cart-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .add-to-cart-btn:hover {
+        background-color: #0056b3;
+    }
 
     </style>
 
@@ -58,10 +90,15 @@
             @for ($i = 1; $i <= 4; $i++)
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{{ asset('ruta/a/tu/imagen'.$i.'.jpg') }}" class="card-img-top" alt="Producto {{ $i }}">
+                        <img src="{{ asset('ruta/a/tu/imagen'.$i.'.jpg') }}" class="card-img-top product-image"
+                            alt="Producto {{ $i }}">
                         <div class="card-body">
-                            <h5 class="card-title">Producto {{ $i }}</h5>
-                            <p class="card-text">${{ $i }}00</p>
+                            <h5 class="card-title product-name">Producto {{ $i }}</h5>
+                            <div class="product-details">
+                                <p class="card-text product-price">${{ $i }}00</p>
+                                <p class="card-text">Stock: {{ rand(0, 100) }}</p> <!-- Ejemplo de stock aleatorio -->
+                            </div>
+                            <button class="add-to-cart-btn">Añadir al carrito</button>
                         </div>
                     </div>
                 </div>
