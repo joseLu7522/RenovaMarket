@@ -6,50 +6,64 @@
 
 
     <style>
+        .product-card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
 
-.product-card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+        .product-image {
+            height: 300px;
+            object-fit: cover;
+            width: 100%;
+            transition: transform 0.5s;
+        }
 
-    .product-image {
-        height: 200px; /* Altura deseada */
-        object-fit: cover; /* Para ajustar la imagen dentro del contenedor sin deformarla */
-        width: 100%; /* Ancho completo */
-    }
 
-    .product-name {
-        font-weight: bold;
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
+        .product-image:hover {
+            transform: scale(0.9);
+        }
 
-    .product-details {
-        margin-top: 10px;
-    }
+        .product-name {
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
 
-    .product-price {
-        font-size: 16px;
-    }
 
-    .add-to-cart-btn {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+        .product-price {
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+        }
 
-    .add-to-cart-btn:hover {
-        background-color: #0056b3;
-    }
+        .product-description {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
+        .add-to-cart-btn {
+            background-color: transparent;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            color: #0056b3;
+        }
+
+        .bi-cart-plus-fill {
+            font-size: 25px;
+        }
     </style>
 
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom mt-5 mb-4">
             <div class="container-fluid mx-5">
-                <a class="navbar-brand" href="{{ route('home') }}"><i class="bi bi-house-door-fill"></i> {{ __('Inicio') }}</a>
+                <a class="navbar-brand" href="{{ route('home') }}">{{ __('Categorias :') }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -58,7 +72,7 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('shop') }}">{{ __('Tienda online') }}</a>
+                            <a class="nav-link" href="{{ route('storeProducts.index') }}">{{ __('Todas') }}</a>
                         </li>
                         @auth
                             <li class="nav-item">
@@ -79,34 +93,47 @@
                             <a class="nav-link" href="#">
                                 <i class="bi bi-cart4"></i>
                             </a>
-
-
                         @endauth
+                        <form class="d-flex">
+                            <input class="form-control mx-3" type="search" placeholder="Buscar" aria-label="Buscar">
+                            <button class="btn btn-outline-success" type="submit">Buscar</button>
+                        </form>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="row">
-            @for ($i = 1; $i <= 4; $i++)
+        <div class="row my-5">
+            @forelse ($storeProducts as $product)
                 <div class="col-md-3">
                     <div class="card product-card">
-                        <img src="{{ asset('ruta/a/tu/imagen'.$i.'.jpg') }}" class="card-img-top product-image"
-                            alt="Producto {{ $i }}">
+                        <img src="{{ asset('/img/prueba.jpg') }}" class="card-img-top product-image mt-4" alt="Producto">
                         <div class="card-body">
-                            <h5 class="card-title product-name">Producto {{ $i }}</h5>
-                            <div class="product-details">
-                                <p class="card-text product-price">${{ $i }}00</p>
-                                <p class="card-text">Stock: {{ rand(0, 100) }}</p> <!-- Ejemplo de stock aleatorio -->
+                            <h5 class="card-title product-name">{{ $product->name }}</h5>
+                            <p class="product-description">{{ $product->description }}</p>
+
+                            <div class="d-flex justify-content-center small text-warning my-2">
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
+                                <div class="bi-star-fill"></div>
                             </div>
-                            <button class="add-to-cart-btn">Añadir al carrito</button>
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <p class="card-text">Stock: {{ $product->stock }}</p>
+
+                                <p class="card-text product-price">{{ $product->price }}€</p>
+                                <button class="add-to-cart-btn">
+                                    <i class="bi bi-cart-plus-fill"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            @endfor
+            @empty
+                <div class="alert alert-warning">No hay productos disponibles.</div>
+            @endforelse
         </div>
     </div>
-
-
-
 
 @endsection

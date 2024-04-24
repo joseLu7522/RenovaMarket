@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StoreProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LanguageController;
@@ -31,6 +32,6 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::post('change-language', [LanguageController::class, 'changeLanguage'])->name('change-language');
 
-Route::get('/tienda', function () {
-    return view('online_store.index');
-})->name('shop');
+
+
+Route::resource('storeProducts', StoreProductController::class);
