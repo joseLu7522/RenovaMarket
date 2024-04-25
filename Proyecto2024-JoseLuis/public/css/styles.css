@@ -1,8 +1,15 @@
 /*-----------------MINIMO ALTURA DEL CONTENEDOR---------------------*/
 .section-content {
     min-height: 450px;
-    /*background-color: #dbeaff;*/
-
+}
+/*------------------------------BANDERA------------------------------*/
+.flag {
+    height: 17px;
+    width: auto;
+}
+.flag.selected {
+    opacity: 0.5;
+    pointer-events: none;
 }
 /*------------------------------FOOTER------------------------------*/
 footer {
@@ -21,9 +28,6 @@ header {
     padding: 10px;
     text-align: center;
 }
-.navbar-custom {
-    background-color: #183440;
-}
 .title {
     font-size: 30px;
     margin-bottom: 10px;
@@ -32,6 +36,13 @@ header {
 .logo {
     width: 100px;
     height: auto;
+}
+/*------------------------------NAVBARS-------------------------------*/
+.navbar-custom {
+    background-color: #183440;
+}
+.product-navbar-custom {
+    background-color: #40606f;
 }
 
 /*------------------------------CAROUSEL------------------------------*/
@@ -53,7 +64,7 @@ header {
     height: 600px;
     object-fit: cover;
 }
-/*---------------------------------------------REGISTRARSE-----------------------------------------------*/
+/*-----------------------------REGISTRARSE-----------------------------*/
 .register-image {
     background-image: url("https://mdbootstrap.com/img/new/textures/full/171.jpg");
     height: 300px;
@@ -68,8 +79,7 @@ header {
     width: 50px;
     height: auto;
 }
-/*COLORES A TENER EN CUENTA color oscuro #4d646f
-color claro #607d8b*/
+/*--------------------------INICIAR SESIÓN------------------------------*/
 .login,
 .image {
     min-height: 100vh;
@@ -91,13 +101,52 @@ color claro #607d8b*/
     );
     background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
-/*------------------------------BANDERA------------------------------*/
-.flag {
-    height: 17px;
-    width: auto;
+/*--------------------------TIENDA ONLINE------------------------------*/
+.store_product {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.flag.selected {
-    opacity: 0.5;
-    pointer-events: none;
+.product-image {
+    height: 300px;
+    object-fit: cover;
+    width: 100%;
+    transition: transform 0.5s;
+}
+.product-image:hover {
+    transform: scale(0.9);
+}
+.product-name {
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.product-price {
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+}
+.product-description {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.add-to-cart-btn {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 
+.add-to-cart-btn:hover {
+    color: #0056b3;
+}
+
+.bi-cart-plus-fill {
+    font-size: 25px;
+}
+
+.product-stock {
+    font-size: 10px;
+}

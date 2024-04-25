@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('store_products', function (Blueprint $table) {
+        Schema::create('baskets', function (Blueprint $table) {
             $table->id()->autoincrement();
-            $table->string('name', 50);
+            $table->string('name_product', 50);
             $table->decimal('price', 6, 2);
             $table->text('description');
-            $table->integer('stock')->default(0);
-            $table->enum('category', ['Electrodomésticos', 'Moda y accesorios', 'Móviles', 'Muebles', 'Informática']);
             $table->string('image');
+            $table->integer('quantity')->default(1);
+            $table->decimal('total_price', 6, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('store_products');
+        Schema::dropIfExists('baskets');
     }
 };

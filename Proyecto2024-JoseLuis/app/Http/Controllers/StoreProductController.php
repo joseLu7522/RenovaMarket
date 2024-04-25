@@ -63,4 +63,11 @@ class StoreProductController extends Controller
     {
         //
     }
+
+    public function filterByCategory($category)
+    {
+
+        $storeProducts = StoreProduct::where('category', $category)->get();
+        return view('online_store.index', compact('storeProducts'));
+    }
 }

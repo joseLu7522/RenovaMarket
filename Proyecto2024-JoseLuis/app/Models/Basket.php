@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StoreProduct extends Model
+class Basket extends Model
 {
     use HasFactory;
 
-    public function baskets()
+    public function storeProducts()
     {
-        return $this->belongsToMany(Basket::class)->withPivot('quantity', 'total_price');
+        return $this->belongsToMany(StoreProduct::class)->withPivot('quantity', 'total_price');
     }
 }

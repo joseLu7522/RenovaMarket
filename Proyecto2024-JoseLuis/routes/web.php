@@ -4,6 +4,8 @@ use App\Http\Controllers\StoreProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\BasketController;
+
 
 
 /*
@@ -35,3 +37,10 @@ Route::post('change-language', [LanguageController::class, 'changeLanguage'])->n
 
 
 Route::resource('storeProducts', StoreProductController::class);
+Route::get('/store/filter/{category}', [StoreProductController::class, 'filterByCategory'])->name('storeProducts.filter');
+
+Route::resource('basket', BasketController::class)->only([
+    'index',
+    'store',
+    'destroy'
+]);
