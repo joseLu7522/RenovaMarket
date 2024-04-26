@@ -53,13 +53,13 @@
             </div>
         </nav>
         <div class="row my-5" id="product-list">
-            @forelse ($storeProducts as $product)
+            @forelse ($storeProducts as $storeProduct)
                 <div class="col-md-3 mb-4 product-card">
                     <div class="card store_product">
                         <img src="{{ asset('/img/prueba.jpg') }}" class="card-img-top product-image mt-4" alt="Producto">
                         <div class="card-body">
-                            <h5 class="card-title product-name">{{ $product->name }}</h5>
-                            <p class="product-description">{{ $product->description }}</p>
+                            <h5 class="card-title product-name">{{ $storeProduct->name }}</h5>
+                            <p class="product-description">{{ $storeProduct->description }}</p>
 
                             <div class="d-flex justify-content-center small text-warning my-2">
                                 <div class="bi-star-fill"></div>
@@ -70,17 +70,31 @@
                             </div>
                             <div class="d-flex justify-content-between align-items-center text-center">
 
-                                <p class="card-text product-stock">Stock: {{ $product->stock }}</p>
+                                <p class="card-text product-stock">Stock: {{ $storeProduct->stock }}</p>
 
-                                <p class="card-text product-price">{{ $product->price }}€</p>
+                                <p class="card-text product-price">{{ $storeProduct->price }}€</p>
                                 <form action="{{ route('basket.store') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="product_id" value="{{ $storeProduct->id }}">
                                     <button type="submit" class="add-to-cart-btn mb-3">
                                         <i class="bi bi-cart-plus-fill"></i>
                                     </button>
                                 </form>
                             </div>
+                            @if (Auth::user()->rol == 'admin')
+                            <hr>
+                                <div class="d-flex justify-content-between align-items-center text-center">
+
+                                    <form action="{{ route('storeProducts.destroy', $storeProduct->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-outline-danger me-2"><i
+                                                class="bi bi-trash3"></i></button>
+                                    </form>
+                                    <a href="{{ route('storeProducts.edit', $storeProduct->id) }}" class="btn btn-outline-secondary me-2"><i
+                                        class="bi bi-pencil"></i></a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

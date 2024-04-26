@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\StoreProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class StoreProductController extends Controller
 {
@@ -61,7 +63,16 @@ class StoreProductController extends Controller
      */
     public function destroy(StoreProduct $storeProduct)
     {
-        //
+        if (Auth::user()) {
+            if (Auth::user()->rol == ('admin')) {
+                $storeProduct->delete();
+                return redirect()->route('storeProducts.index');
+            } else {
+                return redirect()->route('home');
+            }
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     public function filterByCategory($category)

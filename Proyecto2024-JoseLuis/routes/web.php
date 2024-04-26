@@ -39,8 +39,4 @@ Route::post('change-language', [LanguageController::class, 'changeLanguage'])->n
 Route::resource('storeProducts', StoreProductController::class);
 Route::get('/store/filter/{category}', [StoreProductController::class, 'filterByCategory'])->name('storeProducts.filter');
 
-Route::resource('basket', BasketController::class)->only([
-    'index',
-    'store',
-    'destroy'
-]);
+Route::resource('basket', BasketController::class);
