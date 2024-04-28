@@ -20,9 +20,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">{{ __('Compra-venta') }}</a>
                     </li>
+                    @if (Auth::user()->rol == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('storeProducts.create') }}">{{ __('Añadir producto a tienda') }}</a>
+                    </li>
+                    @else
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">{{ __('Subir producto') }}</a>
                     </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">{{ __('Mensajes') }}</a>
                     </li>
