@@ -151,8 +151,8 @@ header {
     font-size: 10px;
 }
 
-/* Estilos para productos sin stock */
-.out-of-stock {
+/*.out-of-stock {
     opacity: 0.5;
     pointer-events: none;
-}
+}*/
+

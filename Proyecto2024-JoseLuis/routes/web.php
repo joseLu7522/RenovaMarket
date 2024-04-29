@@ -8,6 +8,7 @@ use App\Http\Controllers\BasketController;
 
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,4 +40,9 @@ Route::post('change-language', [LanguageController::class, 'changeLanguage'])->n
 Route::resource('storeProducts', StoreProductController::class);
 Route::get('/store/filter/{category}', [StoreProductController::class, 'filterByCategory'])->name('storeProducts.filter');
 
-Route::resource('basket', BasketController::class);
+
+Route::get('/cart', [BasketController::class, 'cart'])->name('cart.index');
+Route::post('/add', [BasketController::class, 'add'])->name('cart.store');
+Route::post('/update', [BasketController::class, 'update'])->name('cart.update');
+Route::post('/remove', [BasketController::class, 'remove'])->name('cart.remove');
+Route::post('/clear', [BasketController::class, 'clear'])->name('cart.clear');

@@ -21,13 +21,14 @@
                         <a class="nav-link" href="{{ route('home') }}">{{ __('Compra-venta') }}</a>
                     </li>
                     @if (Auth::user()->rol == 'admin')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('storeProducts.create') }}">{{ __('Añadir producto a tienda') }}</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="{{ route('storeProducts.create') }}">{{ __('Añadir producto a tienda') }}</a>
+                        </li>
                     @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('Subir producto') }}</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">{{ __('Subir producto') }}</a>
+                        </li>
                     @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">{{ __('Mensajes') }}</a>
@@ -38,8 +39,11 @@
             </ul>
             <ul class="navbar-nav">
                 @auth
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('cart.index') }}">
                         <i class="bi bi-cart4"></i>
+                        @if (Auth::check())
+                            {{ \Cart::session(Auth::user())->getTotalQuantity() }}
+                        @endif
                     </a>
 
                     <div class="dropdown show">
