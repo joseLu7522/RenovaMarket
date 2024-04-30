@@ -39,13 +39,14 @@ class BasketController extends Controller
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
+            'description' => $request->description,
             'quantity' => $request->quantity,
             'attributes' => array(
                 'image' => $request->img,
                 'slug' => $request->slug
             )
         ));
-        return redirect()->route('cart.index')->with('success_msg', 'El articulo ha sido agregado a su carrito!');
+        return redirect()->route('storeProducts.index')->with('success_msg', 'El articulo ha sido agregado a su carrito!');
     }
     public function update(Request $request){
         $userId = Auth::user();

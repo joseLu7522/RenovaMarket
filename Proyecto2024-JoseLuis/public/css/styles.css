@@ -101,6 +101,21 @@ header {
     );
     background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
 }
+/*--------------------CARRITO Y PASARELA DE PAGO-----------------------*/
+
+.card-icon {
+    width: 35px;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.card-icon:hover {
+    transform: scale(1.1);
+}
+
+.link-unstyled {
+    text-decoration: none;
+}
 /*--------------------------TIENDA ONLINE------------------------------*/
 .store_product {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

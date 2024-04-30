@@ -31,7 +31,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('Mensajes') }}</a>
+                        <a class="nav-link" href="{{ route('prueba') }}">{{ __('Mensajes') }}</a>
                     </li>
 
                 @endauth

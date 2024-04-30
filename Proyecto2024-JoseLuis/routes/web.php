@@ -26,6 +26,9 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
+Route::get('prueba', function () {
+    return view('basket.prueba');
+})->name('prueba');
 //RUTAS LOGIN , SIGNUP Y LOGOUT
 Route::get('signup', [LoginController::class, 'signupForm'])->name('signupForm');
 Route::post('signup', [LoginController::class, 'signup'])->name('signup');
