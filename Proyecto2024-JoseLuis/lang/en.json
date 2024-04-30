@@ -37,7 +37,13 @@
     "Informática":"Computing",
     "Ordenar por precio":"Sort by price",
     "Mayor a menor":"Major to minor",
-    "Menor a mayor":"Minor to major"
+    "Menor a mayor":"Minor to major",
+
+    "Está seguro de eliminar este producto":"Are you sure to remove this product",
+    "Sí":"Yes",
+    "No":"No",
+    "Cantidad":"Stock"
+
 
 
 

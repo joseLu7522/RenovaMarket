@@ -37,6 +37,12 @@
     "Informática":"Informàtica",
     "Ordenar por precio":"Ordenar per preu",
     "Mayor a menor":"Major a menor",
-    "Menor a mayor":"Menor a major"
+    "Menor a mayor":"Menor a major",
+
+    "Está seguro de eliminar este producto":"Està segur d'eliminar aquest producte",
+    "Sí":"Sí",
+    "No":"No",
+    "Cantidad":"Cantitat"
+
 
 }

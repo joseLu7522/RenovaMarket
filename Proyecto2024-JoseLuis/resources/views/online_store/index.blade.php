@@ -24,6 +24,7 @@
         .product-card.disabled {
             opacity: 0.5;
         }
+
     </style>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark product-navbar-custom mt-5 mb-4">
@@ -84,18 +85,27 @@
                                 <h5 class="card-title product-name">{{ $storeProduct->name }}</h5>
                                 <p class="product-description">{{ $storeProduct->description }}</p>
 
-                                <div class="d-flex justify-content-center small text-warning my-2">
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        <span class="bi-star star"
-                                            onclick="rate({{ $i }}, '{{ $storeProduct->id }}')"
-                                            id="{{ $i }}star-{{ $storeProduct->id }}"></span>
-                                    @endfor
-                                </div>
+                                @auth
+                                    <div class="d-flex justify-content-center small text-warning my-2">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <span class="bi-star star"
+                                                onclick="rate({{ $i }}, '{{ $storeProduct->id }}')"
+                                                id="{{ $i }}star-{{ $storeProduct->id }}"></span>
+                                        @endfor
+                                    </div>
+                                @endauth
                                 <div class="d-flex justify-content-between align-items-center text-center">
 
-                                    <p class="card-text product-stock">Stock: {{ $storeProduct->stock }}</p>
+                                    <p class="card-text product-stock">{{ __('Cantidad') }}: {{ $storeProduct->stock }}</p>
 
-                                    <p class="card-text product-price">{{ $storeProduct->price }}€</p>
+                                    <p class="card-text product-price">
+                                        @if(app()->getLocale() !== 'en')
+                                            {{ $storeProduct->price }}€
+                                        @else
+                                            ${{ $storeProduct->price }}
+                                        @endif
+                                    </p>
+
 
                                     <form action="{{ route('cart.store') }}" method="POST">
                                         {{ csrf_field() }}
@@ -113,10 +123,11 @@
                                             name="stock">
                                         <input type="hidden" value="1" id="quantity" name="quantity">
 
-                                        <button type="submit" class="add-to-cart-btn mb-3">
-                                            <i class="bi bi-cart-plus-fill"></i>
-                                        </button>
-
+                                        @auth
+                                            <button type="submit" class="add-to-cart-btn mb-3">
+                                                <i class="bi bi-cart-plus-fill"></i>
+                                            </button>
+                                        @endauth
                                     </form>
                                 </div>
                                 @auth
@@ -133,9 +144,7 @@
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="confirmDeleteModalTitle">¿Está seguro
-                                                                de
-                                                                eliminar este producto?</h5>
+                                                            <h5 class="modal-title" id="confirmDeleteModalTitle">¿{{ __('Está seguro de eliminar este producto') }}?</h5>
                                                             <button type="button" class="btn-close" data-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
@@ -145,10 +154,10 @@
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Sí</button>
+                                                                <button type="submit" class="btn btn-danger">{{ __('Sí') }}</button>
                                                             </form>
                                                             <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">No</button>
+                                                                data-dismiss="modal">{{ __('No') }}</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,6 +175,7 @@
             @empty
                 <div class="alert alert-warning">No hay productos disponibles.</div>
             @endforelse
+
         </div>
     </div>
     <script src="/js/search.js"></script>

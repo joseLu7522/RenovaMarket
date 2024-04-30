@@ -1,6 +1,3 @@
-
-
-
 @extends('layout')
 
 
@@ -26,7 +23,30 @@
                                     </h5>
 
                                     <hr>
-
+                                    @if (session()->has('success_msg'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            {{ session()->get('success_msg') }}
+                                        </div>
+                                    @endif
+                                    @if (session()->has('alert_msg'))
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            {{ session()->get('alert_msg') }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                    @if (count($errors) > 0)
+                                        @foreach ($errors0 > all() as $error)
+                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                {{ $error }}
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         @if (\Cart::getTotalQuantity() > 0)
                                             <div>
@@ -41,44 +61,49 @@
                                     </div>
 
                                     @foreach ($cartCollection as $item)
-                                    <div class="card mb-3">
-                                        <div class="card-body d-flex justify-content-between align-items-center">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <div>
-                                                    <img src="{{ URL::asset('storage/img/carrito/' . $item->attributes->image) }}" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                        <div class="card mb-3">
+                                            <div class="card-body d-flex justify-content-between align-items-center">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <img src="{{ URL::asset('storage/img/carrito/' . $item->attributes->image) }}"
+                                                            class="img-fluid rounded-3" alt="Shopping item"
+                                                            style="width: 65px;">
+                                                    </div>
+                                                    <div class="ms-3">
+                                                        <h5>{{ $item->name }}</h5>
+                                                        <p class="small mb-0">{{ $item->description }}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="ms-3">
-                                                    <h5>{{ $item->name }}</h5>
-                                                    <p class="small mb-0">{{ $item->description }}</p>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="me-5">
+                                                        <h5 class="mb-0">${{ $item->price }}</h5>
+                                                    </div>
+                                                    <form action="{{ route('cart.update') }}" method="POST"
+                                                        class="d-flex align-items-center">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" value="{{ $item->id }}" id="id"
+                                                            name="id">
+                                                        <input type="number" class="form-control form-control-sm me-2"
+                                                            value="{{ $item->quantity }}" id="quantity" name="quantity"
+                                                            style="width: 70px;" min="1">
+                                                        <button type="submit" class="btn btn-sm btn-primary me-2"><i
+                                                                class="bi bi-pencil-square"></i></button>
+                                                    </form>
+                                                    <form action="{{ route('cart.remove') }}" method="POST"
+                                                        class="d-flex align-items-center">
+                                                        {{ csrf_field() }}
+                                                        <input type="hidden" value="{{ $item->id }}" id="id"
+                                                            name="id">
+                                                        <button type="submit" class="btn btn-sm btn-danger"><i
+                                                                class="bi bi-trash3"></i></button>
+                                                    </form>
                                                 </div>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <div class="me-5">
-                                                    <h5 class="mb-0">${{ $item->price }}</h5>
-                                                </div>
-                                                <form action="{{ route('cart.update') }}" method="POST" class="d-flex align-items-center">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" value="{{ $item->id }}" id="id" name="id">
-                                                    <input type="number" class="form-control form-control-sm me-2" value="{{ $item->quantity }}" id="quantity" name="quantity" style="width: 70px;">
-                                                    <button type="submit" class="btn btn-sm btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                                                </form>
-                                                <form action="{{ route('cart.remove') }}" method="POST" class="d-flex align-items-center">
-                                                    {{ csrf_field() }}
-                                                    <input type="hidden" value="{{ $item->id }}" id="id" name="id">
-                                                    <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>
-                                                </form>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
 
 
                                 </div>
-
-
-
-
-
 
 
 
@@ -109,7 +134,8 @@
 
                                                     <input type="text" id="typeText"
                                                         class="form-control form-control-lg" siez="17"
-                                                        placeholder="1234 5678 9012 3456" minlength="19" maxlength="19" />
+                                                        placeholder="1234 5678 9012 3456" minlength="19"
+                                                        maxlength="19" />
 
                                                     <label class="form-label"
                                                         for="typeText">{{ __('Numero tarjeta') }}</label>
@@ -123,9 +149,7 @@
                                                                 maxlength="7" />
 
                                                             <label class="form-label"
-                                                                for="typeExp">{{ __('Fecha de
-
-                                                                                                                                                                                                                                                                                                                            caducidad') }}</label>
+                                                                for="typeExp">{{ __('Fecha de caducidad') }}</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -163,7 +187,8 @@
 
                                                 <p class="mb-2">{{ __('Total') }}(Incl. IVA)</p>
 
-                                                <p class="mb-2">${{ number_format(\Cart::getTotal() * 1.21+6, 2) }}</p>
+                                                <p class="mb-2">${{ number_format(\Cart::getTotal() * 1.21 + 6, 2) }}
+                                                </p>
 
                                             </div>
 

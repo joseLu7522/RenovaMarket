@@ -18,7 +18,7 @@
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ __('Compra-venta') }}</a>
+                        <a class="nav-link" href="{{ route('userProducts.index') }}">{{ __('Compra-venta') }}</a>
                     </li>
                     @if (Auth::user()->rol == 'admin')
                         <li class="nav-item">
@@ -31,7 +31,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('prueba') }}">{{ __('Mensajes') }}</a>
+                        <a class="nav-link" href="{{ route('home') }}">{{ __('Mensajes') }}</a>
                     </li>
 
                 @endauth
@@ -39,44 +39,45 @@
             </ul>
             <ul class="navbar-nav">
                 @auth
-                    <a class="nav-link" href="{{ route('cart.index') }}">
-                        <i class="bi bi-cart4"></i>
-                        @if (Auth::check())
+                    @if (request()->routeIs('storeProducts.index'))
+                        <a class="nav-link" href="{{ route('cart.index') }}">
+                            <i class="bi bi-cart4"></i>
                             {{ \Cart::session(Auth::user())->getTotalQuantity() }}
-                        @endif
-                    </a>
-
-                    <div class="dropdown show">
-                        <a class="btn dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bi bi-globe2"></i>
-                            {{ app()->getLocale() == 'en' ? 'English' : (app()->getLocale() == 'es' ? 'Español' : 'Valencià') }}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <form action="{{ route('change-language') }}" method="POST">
-                                @csrf
-                                @if (app()->getLocale() == 'es')
-                                    <button class="dropdown-item" name="locale" value="es" selected disabled>🇪🇸
-                                        Español</button>
-                                    <button class="dropdown-item" name="locale" value="en">🇬🇧 English</button>
-                                    <button class="dropdown-item" name="locale" value="ca"><img src="/img/flag.png"
-                                            alt="flag-ca" class="flag"> Valencià</button>
-                                @elseif(app()->getLocale() == 'ca')
-                                    <button class="dropdown-item" name="locale" value="ca" selected disabled><img
-                                            src="/img/flag.png" alt="flag-ca" class="flag selected"> Valencià</button>
-                                    <button class="dropdown-item" name="locale" value="en">🇬🇧 English</button>
-                                    <button class="dropdown-item" name="locale" value="es">🇪🇸 Español</button>
-                                @else
-                                    <button class="dropdown-item" name="locale" value="en" selected disabled>🇬🇧
-                                        English</button>
-                                    <button class="dropdown-item" name="locale" value="es">🇪🇸 Español</button>
-                                    <button class="dropdown-item" name="locale" value="ca"><img src="/img/flag.png"
-                                            alt="flag-ca" class="flag"> Valencià</button>
-                                @endif
-                            </form>
-                        </div>
-                    </div>
+                    @endif
+                @endauth
 
+                <div class="dropdown show">
+                    <a class="btn dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bi bi-globe2"></i>
+                        {{ app()->getLocale() == 'en' ? 'English' : (app()->getLocale() == 'es' ? 'Español' : 'Valencià') }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <form action="{{ route('change-language') }}" method="POST">
+                            @csrf
+                            @if (app()->getLocale() == 'es')
+                                <button class="dropdown-item" name="locale" value="es" selected disabled>🇪🇸
+                                    Español</button>
+                                <button class="dropdown-item" name="locale" value="en">🇬🇧 English</button>
+                                <button class="dropdown-item" name="locale" value="ca"><img src="/img/flag.png"
+                                        alt="flag-ca" class="flag"> Valencià</button>
+                            @elseif(app()->getLocale() == 'ca')
+                                <button class="dropdown-item" name="locale" value="ca" selected disabled><img
+                                        src="/img/flag.png" alt="flag-ca" class="flag selected"> Valencià</button>
+                                <button class="dropdown-item" name="locale" value="en">🇬🇧 English</button>
+                                <button class="dropdown-item" name="locale" value="es">🇪🇸 Español</button>
+                            @else
+                                <button class="dropdown-item" name="locale" value="en" selected disabled>🇬🇧
+                                    English</button>
+                                <button class="dropdown-item" name="locale" value="es">🇪🇸 Español</button>
+                                <button class="dropdown-item" name="locale" value="ca"><img src="/img/flag.png"
+                                        alt="flag-ca" class="flag"> Valencià</button>
+                            @endif
+                        </form>
+                    </div>
+                </div>
+                @auth
                     <div class="dropdown show">
                         <a class="btn dropdown-toggle nav-link" href="{{ route('home', Auth::user()) }}" role="button"
                             id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
