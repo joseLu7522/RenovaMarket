@@ -27,7 +27,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">{{ __('Subir producto') }}</a>
+                            <a class="nav-link" href="{{ route('userProducts.create') }}">{{ __('Subir producto') }}</a>
                         </li>
                     @endif
                     <li class="nav-item">
@@ -84,7 +84,7 @@
                             <i class="bi bi-person-lines-fill"></i> {{ ucfirst(Auth::user()->name) }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">{{ __('Perfil') }}</a>
+                            <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">{{ __('Perfil') }}</a>
                             <a class="dropdown-item" href="#">{{ __('Editar perfil') }}</a>
                             <a class="dropdown-item" href="#">{{ __('Subir producto') }}</a>
                             <a class="dropdown-item"href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i>

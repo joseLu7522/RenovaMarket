@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('store_products', function (Blueprint $table) {
             $table->id()->autoincrement();
-            $table->string('name', 50);
+            $table->string('name', 30);
             $table->decimal('price', 6, 2);
             $table->text('description');
             $table->integer('stock')->default(0);

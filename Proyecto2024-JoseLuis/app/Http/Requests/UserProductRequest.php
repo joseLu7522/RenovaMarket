@@ -4,14 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class UserProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -19,26 +17,19 @@ class StoreProductRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|string|min:4|max:30|regex:/^[^\d]\w*/',
             'description' => 'required|max:200|string|regex:/^[^\d]\w*/',
             'price' => 'required|numeric|min:0|max:9999.99',
-            'stock' => 'required|integer|min:0',
             'category' => 'required|string|in:Electrodomésticos,Moda y accesorios,Móviles,Muebles,Informática',
             'image' => 'required|image|mimes:png|max:2048',
 
         ];
     }
-
-    /**
-     * Get the validation error messages.
-     *
-     * @return array
-     */
     public function messages()
     {
         return [
@@ -55,9 +46,6 @@ class StoreProductRequest extends FormRequest
             'price.numeric' => 'El precio del producto debe ser un número.',
             'price.min' => 'El precio del producto no puede ser negativo.',
             'price.max' => 'El precio del producto no puede ser mayor a 9999.99€.',
-            'stock.required' => 'El stock del producto es obligatorio.',
-            'stock.integer' => 'El stock del producto debe ser un número entero.',
-            'stock.min' => 'El stock del producto no puede ser negativo.',
             'category.required' => 'La categoría del producto es obligatoria.',
             'category.string' => 'La categoría del producto debe ser un texto.',
             'category.in' => 'La categoría seleccionada no es válida.',
@@ -67,5 +55,4 @@ class StoreProductRequest extends FormRequest
             'image.max' => 'El tamaño máximo permitido para la imagen es de 2048 kilobytes.',
         ];
     }
-
 }

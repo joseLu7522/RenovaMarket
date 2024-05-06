@@ -9,8 +9,9 @@ class StoreProduct extends Model
 {
     use HasFactory;
 
-    public function baskets()
+    public function users()
     {
-        return $this->belongsToMany(Basket::class)->withPivot('quantity', 'total_price');
+        return $this->belongsToMany(User::class, 'store_products_users')->withPivot('rating');
     }
+
 }

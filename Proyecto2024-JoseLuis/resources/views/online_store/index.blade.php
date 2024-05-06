@@ -24,16 +24,15 @@
         .product-card.disabled {
             opacity: 0.5;
         }
-
     </style>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark product-navbar-custom mt-5 mb-4">
             <div class="container-fluid mx-5">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavProducts"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNavProducts">
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
@@ -78,28 +77,41 @@
             @forelse ($storeProducts as $storeProduct)
                 @if ($storeProduct->stock > 0 || (Auth::check() && Auth::user()->rol == 'admin'))
                     <div class="col-md-3 mb-4 product-card">
-                        <div class="card store_product {{ $storeProduct->stock == 0 ? 'out-of-stock' : '' }}">
-                            <img src="{{ asset('/img/prueba.jpg') }}" class="card-img-top product-image mt-4 img-fluid"
-                                alt="Producto">
+                        <div class="card store_product {{ $storeProduct->stock == 0 ? 'out-of-stock' : '' }}  h-100">
+
+                            <img src="/storage/storeProducts/{{ $storeProduct->name }}.png"
+                                class="card-img-top product-image mt-4" alt="Producto">
                             <div class="card-body">
                                 <h5 class="card-title product-name">{{ $storeProduct->name }}</h5>
                                 <p class="product-description">{{ $storeProduct->description }}</p>
 
+
                                 @auth
-                                    <div class="d-flex justify-content-center small text-warning my-2">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <span class="bi-star star"
-                                                onclick="rate({{ $i }}, '{{ $storeProduct->id }}')"
-                                                id="{{ $i }}star-{{ $storeProduct->id }}"></span>
-                                        @endfor
-                                    </div>
+                                    <form id="ratingForm{{ $storeProduct->id }}"
+                                        action="{{ route('storeProducts.rate', $storeProduct->id) }}" method="POST">
+                                        @csrf
+                                        <div class="d-flex justify-content-center small text-warning my-2">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <span class="bi-star star"
+                                                    onclick="rate({{ $i }}, '{{ $storeProduct->id }}', {{ $storeProduct->id }})"
+                                                    id="{{ $i }}star-{{ $storeProduct->id }}"></span>
+                                            @endfor
+                                            <input type="hidden" name="rating" id="rating{{ $storeProduct->id }}"
+                                                value="0">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Valorar</button>
+                                    </form>
+
+
                                 @endauth
+
                                 <div class="d-flex justify-content-between align-items-center text-center">
 
-                                    <p class="card-text product-stock">{{ __('Cantidad') }}: {{ $storeProduct->stock }}</p>
+                                    <p class="card-text product-stock">{{ __('Cantidad') }}: {{ $storeProduct->stock }}
+                                    </p>
 
                                     <p class="card-text product-price">
-                                        @if(app()->getLocale() !== 'en')
+                                        @if (app()->getLocale() !== 'en')
                                             {{ $storeProduct->price }}€
                                         @else
                                             ${{ $storeProduct->price }}
@@ -136,15 +148,19 @@
                                         <div class="d-flex justify-content-between align-items-center text-center">
                                             <!--INICIO POPUP ELIMINAR-->
                                             <button type="button" class="btn btn-outline-danger me-2" data-toggle="modal"
-                                                data-target="#confirmDeleteModal">
+                                                data-target="#confirmDeleteModal{{ $storeProduct->id }}">
                                                 <i class="bi bi-trash3"></i>
                                             </button>
-                                            <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
-                                                aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
+
+                                            <div class="modal fade" id="confirmDeleteModal{{ $storeProduct->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalTitle"
+                                                aria-hidden="true">
+
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="confirmDeleteModalTitle">¿{{ __('Está seguro de eliminar este producto') }}?</h5>
+                                                            <h5 class="modal-title" id="confirmDeleteModalTitle">
+                                                                ¿{{ __('Está seguro de eliminar este producto') }}?</h5>
                                                             <button type="button" class="btn-close" data-dismiss="modal"
                                                                 aria-label="Close"></button>
                                                         </div>
@@ -154,7 +170,8 @@
                                                                 method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">{{ __('Sí') }}</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-danger">{{ __('Sí') }}</button>
                                                             </form>
                                                             <button type="button" class="btn btn-secondary"
                                                                 data-dismiss="modal">{{ __('No') }}</button>
@@ -175,22 +192,24 @@
             @empty
                 <div class="alert alert-warning">No hay productos disponibles.</div>
             @endforelse
-
+{{ $storeProducts->links() }}
         </div>
     </div>
     <script src="/js/search.js"></script>
 
 @endsection
 <script>
-    function rate(count, productId) {
+    function rate(count, productId, formId) {
+        // Establecer la puntuación seleccionada en un input oculto específico para este producto
+        document.getElementById("rating" + productId).value = count;
+
+        // Cambiar el color de las estrellas según la puntuación seleccionada
         for (let i = 1; i <= 5; i++) {
             let star = document.getElementById(i + 'star-' + productId);
             if (i <= count) {
-                star.classList.add('bi-star-fill');
-                star.classList.remove('bi-star');
+                star.classList.add('bi-star-fill'); // Agrega la clase 'bi-star-fill' para mostrar la estrella rellena
             } else {
-                star.classList.add('bi-star');
-                star.classList.remove('bi-star-fill');
+                star.classList.remove('bi-star-fill'); // Elimina la clase 'bi-star-fill' para mostrar la estrella vacía
             }
         }
     }

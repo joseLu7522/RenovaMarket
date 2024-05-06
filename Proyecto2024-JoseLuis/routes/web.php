@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\UserController;
+
 
 
 Route::get('/', function () {
@@ -20,16 +22,18 @@ Route::post('signup', [LoginController::class, 'signup'])->name('signup');
 Route::get('login', [LoginController::class, 'loginForm'])->name('loginForm');
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-
-
-
+//RUTA PRODUCTOS DE USUARIOS
 Route::resource('userProducts', UserProductController::class);
+Route::get('/buy_sell/filter/{category}', [UserProductController::class, 'filterByCategory'])->name('userProducts.filter');
+//RUTAS PRODUCTOS DE TIENDA/FILTROS/VALORACIÓN
 Route::resource('storeProducts', StoreProductController::class);
 Route::get('/store/filter/{category}', [StoreProductController::class, 'filterByCategory'])->name('storeProducts.filter');
-
-
+Route::post('storeProducts/{storeProduct}/rate', [StoreProductController::class, 'rate'])->name('storeProducts.rate');
+//RUTAS CARRITO DE LA COMPRA
 Route::get('/cart', [BasketController::class, 'cart'])->name('cart.index');
 Route::post('/add', [BasketController::class, 'add'])->name('cart.store');
 Route::post('/update', [BasketController::class, 'update'])->name('cart.update');
 Route::post('/remove', [BasketController::class, 'remove'])->name('cart.remove');
 Route::post('/clear', [BasketController::class, 'clear'])->name('cart.clear');
+/**/
+Route::resource('users', UserController::class);

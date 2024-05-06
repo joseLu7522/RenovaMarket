@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_products', function (Blueprint $table) {
             $table->id()->autoincrement();
-            $table->string('name', 50);
+            $table->foreignId('user_id')->constrained();
+            $table->string('name', 30);
             $table->decimal('price', 6, 2);
             $table->text('description');
             $table->enum('category', ['Electrodomésticos', 'Moda y accesorios', 'Móviles', 'Muebles', 'Informática']);

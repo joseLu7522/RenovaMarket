@@ -16,7 +16,7 @@ class StoreProductController extends Controller
      */
     public function index()
     {
-        $storeProducts = StoreProduct::All();
+        $storeProducts = StoreProduct::Paginate(20);
         return view('online_store.index', compact('storeProducts'));
     }
 
@@ -47,12 +47,16 @@ class StoreProductController extends Controller
     {
         if (Auth::user()) {
             if (Auth::user()->rol == 'admin') {
+
                 $storeProduct = new StoreProduct();
                 $storeProduct->name = $request->input('name');
                 $storeProduct->description = $request->input('description');
                 $storeProduct->price = $request->input('price', 0);
                 $storeProduct->stock = $request->input('stock', 1);
                 $storeProduct->category = $request->input('category');
+
+                $storeProduct->image = $request->file('image')->storeAs('public/storeProducts', $storeProduct->name . '.png');
+
 
                 $storeProduct->save();
 
@@ -118,14 +122,16 @@ class StoreProductController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+/*DESTROY: ELIMINA EL PRODUCTO DE LA TIENDA JUNTO A SU IMAGEN GUARDADA EN STORAGE*/
     public function destroy(StoreProduct $storeProduct)
     {
         if (Auth::user()) {
             if (Auth::user()->rol == ('admin')) {
+                $imagePath = public_path('storage/storeProducts/' . $storeProduct->name . '.png');
                 $storeProduct->delete();
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
                 return redirect()->route('storeProducts.index');
             } else {
                 return redirect()->route('home');
@@ -141,4 +147,25 @@ class StoreProductController extends Controller
         $storeProducts = StoreProduct::where('category', $category)->get();
         return view('online_store.index', compact('storeProducts'));
     }
+    public function rate(Request $request, $storeProduct)
+    {
+        if (Auth::user()) {
+            $storeProduct = StoreProduct::find($storeProduct);
+            if ($storeProduct) {
+
+                $existingRating = Auth::user()->storeProducts()->where('store_product_id', $storeProduct->id)->first();
+
+                if ($existingRating) {
+                    $existingRating->pivot->rating = $request->rating;
+                    $existingRating->pivot->save();
+                } else {
+                    Auth::user()->storeProducts()->attach($storeProduct, ['rating' => $request->rating]);
+                }
+
+                return redirect()->route('storeProducts.index');
+            }
+        }
+        return redirect()->route('home');
+    }
+
 }

@@ -9,8 +9,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body form-container">
-                        <h1 class="card-title text-center mb-4">Añadir producto a tienda</h1>
-                        <form action="{{ route('storeProducts.store') }}" method="POST" enctype="multipart/form-data"
+                        <h1 class="card-title text-center mb-4">Subir producto</h1>
+                        <form action="{{ route('userProducts.store') }}" method="POST" enctype="multipart/form-data"
                             class="needs-validation">
                             @csrf
                             <div class="mb-3">
@@ -45,19 +45,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <label for="stock" class="form-label">Stock</label>
-                                <input type="number" class="form-control" id="stock" name="stock"
-                                    value="{{ old('stock', 1) }}" min="1">
-                                <!--ERRORES STOCK-->
-                                @error('stock')
-                                    <div class="alert alert-danger mt-1 mb-1 small">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-
                             <div class="mb-3">
                                 <label for="category" class="form-label">Categoría</label>
                                 <select class="form-control" id="category" name="category">
