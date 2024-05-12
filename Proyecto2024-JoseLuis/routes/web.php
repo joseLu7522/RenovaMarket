@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -37,3 +38,5 @@ Route::post('/remove', [BasketController::class, 'remove'])->name('cart.remove')
 Route::post('/clear', [BasketController::class, 'clear'])->name('cart.clear');
 /**/
 Route::resource('users', UserController::class);
+/*RUTA DE LOS MENSAJES*/
+Route::resource('messages', MessageController::class);

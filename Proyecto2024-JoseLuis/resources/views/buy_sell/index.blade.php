@@ -66,9 +66,8 @@
 
                                 <p class="card-text product-price">{{ $userProduct->price }}€</p>
 
-                                <button type="submit" class="add-to-cart-btn mb-3">
-                                    <i class="bi bi-cart-plus-fill"></i>
-                                </button>
+                                <a href="{{ route('messages.show', $userProduct)}}" class="btn btn-primary"><i class="bi bi-chat-dots"></i></a>
+
 
                             </div>
                             @auth
