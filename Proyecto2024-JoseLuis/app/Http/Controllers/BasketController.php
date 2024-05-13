@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StoreProduct;
 
+
 class BasketController extends Controller
 {
 
@@ -64,4 +65,5 @@ class BasketController extends Controller
         \Cart::session($userId)->clear();
         return redirect()->route('cart.index')->with('success_msg', 'El carrito ha sido borrado con exito!');
     }
+
 }

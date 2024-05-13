@@ -21,7 +21,6 @@
                                             <i class="bi bi-arrow-left"></i> {{ __('Volver') }}
                                         </a>
                                     </h5>
-
                                     <hr>
                                     @if (session()->has('success_msg'))
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -187,7 +186,7 @@
 
                                                 <p class="mb-2">{{ __('Total') }}(Incl. IVA)</p>
 
-                                                <p class="mb-2">${{ number_format(\Cart::getTotal() * 1.21 + 6, 2) }}
+                                             <p class="mb-2">${{ number_format(\Cart::getTotal() * 1.21 + 6, 2) }}
                                                 </p>
 
                                             </div>
@@ -197,10 +196,11 @@
 
                                                 <div class="d-flex justify-content-between align-items-center">
 
-                                                    <span>{{ __('Realizar compra') }} <i
-                                                            class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                                </div>
+                                                    <a href="{{ route('orders.generateInvoice', ['cartCollection' => urlencode(json_encode($cartCollection))]) }}">
+                                                        <span>{{ __('Realizar compra') }} <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    </a>
 
+                                                </div>
                                             </button>
                                         </div>
                                     </div>

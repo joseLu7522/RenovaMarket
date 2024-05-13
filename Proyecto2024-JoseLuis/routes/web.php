@@ -8,6 +8,8 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\InvoiceController;
+
 
 
 
@@ -40,3 +42,6 @@ Route::post('/clear', [BasketController::class, 'clear'])->name('cart.clear');
 Route::resource('users', UserController::class);
 /*RUTA DE LOS MENSAJES*/
 Route::resource('messages', MessageController::class);
+/*GENERAR FACTURAS*/
+Route::get('/cart/generateInvoice', [InvoiceController::class, 'generateInvoice'])->name('orders.generateInvoice');
+
