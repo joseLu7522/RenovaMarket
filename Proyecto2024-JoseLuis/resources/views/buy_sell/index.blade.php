@@ -55,68 +55,68 @@
             @forelse ($userProducts as $userProduct)
                 <div class="col-md-3 mb-4 product-card">
                     <div class="card store_product">
-                        <p class="card-text product-user">Usuario: {{ $userProduct->user->name }}</p>
-                        <img src="/storage/userProducts/{{ $userProduct->name }}.png"
-                                class="card-img-top product-image mt-4" alt="Producto">
+                        <div class="d-flex align-items-center">
+                            <!-- Mostrar la foto de perfil -->
+                            <div class="profile-photo mx-1 mt-1">
+                                <img src="/storage/usersProfile/{{ $userProduct->user->name }}.png" alt="Foto de perfil" class="rounded-circle" width="30" style="margin: 5px;">
+
+                            </div>
+                            <p class="card-text product-user"><strong>{{ $userProduct->user->name }}</strong></p>
+
+
+                        </div>
+                        <img src="/storage/userProducts/{{ $userProduct->name }}.png" class="card-img-top product-image mt-4" alt="Producto">
                         <div class="card-body">
                             <h5 class="card-title product-name">{{ $userProduct->name }}</h5>
                             <p class="product-description">{{ $userProduct->description }}</p>
 
                             <div class="d-flex justify-content-between align-items-center text-center">
-
                                 <p class="card-text product-price">{{ $userProduct->price }}€</p>
-
-                                <a href="{{ route('messages.show', $userProduct)}}" class="btn btn-primary"><i class="bi bi-chat-dots"></i></a>
-
-
+                                @auth
+                                    @if (Auth::id() !== $userProduct->user_id)
+                                        <a href="{{ route('messages.show', $userProduct) }}" class="btn btn-primary">
+                                            <i class="bi bi-chat-dots"></i>
+                                        </a>
+                                    @endif
+                                @endauth
                             </div>
                             @auth
                                 @if (Auth::user()->rol == 'admin')
                                     <hr>
-                                    <div class="d-flex justify-content-between align-items-center text-center">
-                                        <!--INICIO POPUP ELIMINAR-->
-                                        <button type="button" class="btn btn-outline-danger me-2" data-toggle="modal"
-                                            data-target="#confirmDeleteModal">
-                                            <i class="bi bi-trash3"></i>
-                                        </button>
-                                        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
-                                            aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="confirmDeleteModalTitle">¿Está seguro
-                                                            de
-                                                            eliminar este producto?</h5>
-                                                        <button type="button" class="btn-close" data-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <form action="{{ route('userProducts.destroy', $userProduct->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Sí</button>
-                                                        </form>
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">No</button>
-                                                    </div>
+                                    <!--INICIO POPUP ELIMINAR-->
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="confirmDeleteModalTitle">¿Está seguro de eliminar este producto?</h5>
+                                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{{ route('userProducts.destroy', $userProduct->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Sí</button>
+                                                    </form>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--FIN POPUP ELIMINAR-->
                                     </div>
+                                    <!--FIN POPUP ELIMINAR-->
                                 @endif
                             @endauth
                         </div>
                     </div>
                 </div>
-
             @empty
                 <div class="alert alert-warning">No hay productos disponibles.</div>
             @endforelse
         </div>
+
     </div>
     <script src="/js/search.js"></script>
 
 @endsection
-

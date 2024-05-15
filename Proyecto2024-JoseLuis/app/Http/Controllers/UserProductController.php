@@ -71,12 +71,18 @@ class UserProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(UserProduct $userProduct)
     {
-        //
+        if (Auth::user()) {
+            if ( Auth::id() == $userProduct->user_id) {
+                return view('buy_sell.edit', compact('userProduct'));
+            } else {
+                return redirect()->route('home');
+            }
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**
@@ -84,7 +90,29 @@ class UserProductController extends Controller
      */
     public function update(Request $request, UserProduct $userProduct)
     {
-        //
+        if (Auth::user()) {
+            if ( Auth::id() == $userProduct->user_id) {
+                $imagePath = public_path('storage/userProducts/' . $userProduct->name . '.png');
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                $userProduct->name = $request->input('name');
+                $userProduct->price = $request->input('price');
+                $userProduct->description = $request->input('description');
+                $userProduct->category = $request->input('category');
+
+                $userProduct->image = $request->file('image')->storeAs('public/userProducts', $userProduct->name . '.png');
+
+                $userProduct->save();
+
+                return redirect()->route('userProducts.index');
+            } else {
+                return redirect()->route('home');
+            }
+        } else {
+            return redirect()->route('home');
+
+        }
     }
 
     /**

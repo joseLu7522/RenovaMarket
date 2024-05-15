@@ -21,7 +21,7 @@
                                 <h3 class="display-5">Create una cuenta!</h3>
                                 <p class="text-muted mb-4">y disfruta de nuestra maravillosa comunidad.</p>
 
-                                <form action="{{ route('signup') }}" method="post">
+                                <form action="{{ route('signup') }}" method="post" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="form-group mb-3">
@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <input id="inputPassword" type="password" placeholder="Contraseña"
-                                            class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
+                                            class="form-control rounded-pill border-0 shadow-sm px-4"
                                             value="{{ old('password') }}" name="password">
                                         @error('password')
                                             <!--ERRORES CONTRASEÑA-->
@@ -68,12 +68,18 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="custom-control custom-checkbox mb-3">
-                                        <input id="customCheck1" type="checkbox" checked class="custom-control-input">
-                                        <label for="customCheck1" class="custom-control-label">Recordar contraseña</label>
+                                    <div class="form-group mb-3">
+                                        <input type="file" class="form-control rounded-pill border-0 shadow-sm px-4" id="profile_photo" name="profile_photo">
+                                        <img id="previewimg" src="#" class="product-image mt-4" alt=" ">
+                                        <!--ERRORES FOTO DE USUARIO-->
+                                        @error('profile_photo')
+                                            <div class="alert alert-danger mt-1 mb-1 small">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <button type="submit"
-                                        class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Crear
+                                        class="btn btn-primary btn-block text-uppercase my-2 rounded-pill shadow-sm">Crear
                                         cuenta</button>
                                     <div class="text-center d-flex justify-content-between mt-4">
                                         <p>Ya tienes cuenta? <a href="{{ route('loginForm') }}"
@@ -90,4 +96,12 @@
 
         </div>
     </div>
+    <script>
+        profile_photo.onchange = evt => {
+      const [file] = profile_photo.files
+      if (file) {
+        previewimg.src = URL.createObjectURL(file)
+      }
+    }
+    </script>
 @endsection

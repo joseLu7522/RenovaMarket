@@ -31,7 +31,7 @@
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('messages.index')}}">{{ __('Mensajes') }}</a>
+                        <a class="nav-link" href="{{ route('messages.index') }}">{{ __('Mensajes') }}</a>
                     </li>
 
                 @endauth
@@ -84,9 +84,16 @@
                             <i class="bi bi-person-lines-fill"></i> {{ ucfirst(Auth::user()->name) }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">{{ __('Perfil') }}</a>
-                            <a class="dropdown-item" href="#">{{ __('Editar perfil') }}</a>
-                            <a class="dropdown-item" href="#">{{ __('Subir producto') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('users.show', Auth::user()) }}">{{ __('Perfil') }}</a>
+                            <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">{{ __('Editar perfil') }}</a>
+                            @if (Auth::user()->rol == 'admin')
+                                <a class="dropdown-item"
+                                    href="{{ route('storeProducts.create') }}">{{ __('Subir producto') }}</a>
+                            @else
+                                <a class="dropdown-item"
+                                    href="{{ route('userProducts.create') }}">{{ __('Subir producto') }}</a>
+                            @endif
                             <a class="dropdown-item"href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i>
                                 {{ __('Cerrar sesión') }}</a>
                         </div>

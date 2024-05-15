@@ -102,13 +102,17 @@ class StoreProductController extends Controller
     {
         if (Auth::user()) {
             if (Auth::user()->rol == ('admin')) {
+                $imagePath = public_path('storage/storeProducts/' . $storeProduct->name . '.png');
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
                 $storeProduct->name = $request->input('name');
                 $storeProduct->price = $request->input('price');
                 $storeProduct->description = $request->input('description');
                 $storeProduct->stock = $request->input('stock');
                 $storeProduct->category = $request->input('category');
+                $storeProduct->image = $request->file('image')->storeAs('public/storeProducts', $storeProduct->name . '.png');
 
-                /*FALTA GUARDAR LA IMAGEN*/
 
                 $storeProduct->save();
 

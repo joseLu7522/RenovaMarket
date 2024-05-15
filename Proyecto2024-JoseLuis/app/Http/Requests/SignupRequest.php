@@ -53,7 +53,7 @@ class SignupRequest extends FormRequest
                 }
             },
         ];
-
+        $rules['profile_photo'] = 'nullable|image|mimes:jpeg,png,jpg|max:2048';
         return $rules;
     }
 
@@ -64,7 +64,7 @@ class SignupRequest extends FormRequest
             'name.string' => 'El campo nombre debe ser una cadena de texto.',
             'name.min' => 'El campo nombre debe tener al menos 4 caracteres.',
             'name.max' => 'El campo nombre no puede tener más de 20 caracteres.',
-            'name.regex' => 'El campo nombre no debe empezar por un numero.',
+            'name.regex' => 'El campo nombre no debe empezar por un número.',
             'email.required' => 'El campo correo es obligatorio.',
             'email.email' => 'El campo correo debe ser una dirección de correo electrónico válida.',
             'email.min' => 'El campo correo debe tener al menos 10 caracteres.',
@@ -75,6 +75,10 @@ class SignupRequest extends FormRequest
             'password.min' => 'El campo contraseña debe tener al menos 8 caracteres.',
             'birthday.required' => 'El campo fecha de nacimiento es obligatorio.',
             'birthday.date' => 'El campo fecha de nacimiento debe ser una fecha válida.',
+            'profile_photo.image' => 'La foto de perfil debe ser una imagen.',
+            'profile_photo.mimes' => 'La foto de perfil debe ser de tipo JPEG, PNG o JPG.',
+            'profile_photo.max' => 'La foto de perfil no puede superar los 2MB.',
         ];
     }
 }
+

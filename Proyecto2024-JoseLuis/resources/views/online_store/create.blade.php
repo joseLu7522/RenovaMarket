@@ -84,6 +84,7 @@
                             <div class="mb-3">
                                 <label for="image" class="form-label">Imagen</label>
                                 <input type="file" class="form-control" id="image" name="image">
+                                <img id="previewimg" src="#" class="product-image mt-4" alt=" ">
                                 <!--ERRORES IMAGEN-->
                                 @error('image')
                                     <div class="alert alert-danger mt-1 mb-1 small">
@@ -98,5 +99,12 @@
             </div>
         </div>
     </div>
-
+    <script>
+        image.onchange = evt => {
+      const [file] = image.files
+      if (file) {
+        previewimg.src = URL.createObjectURL(file)
+      }
+    }
+    </script>
 @endsection

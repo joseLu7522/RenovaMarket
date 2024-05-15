@@ -27,6 +27,7 @@ class LoginController extends Controller
         $user->email_verified_at = $request->input('email_verified_at');
         $user->birthday = $request->input('birthday');
         $user->password = Hash::make($request->input('password'));
+        $user->profile_photo = $request->file('profile_photo')->storeAs('public/usersProfile', $user->name . '.png');
         $user->save();
 
         Auth::login($user);

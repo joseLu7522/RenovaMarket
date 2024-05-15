@@ -29,7 +29,7 @@ class StoreProductRequest extends FormRequest
             'price' => 'required|numeric|min:0|max:9999.99',
             'stock' => 'required|integer|min:0',
             'category' => 'required|string|in:Electrodomésticos,Moda y accesorios,Móviles,Muebles,Informática',
-            'image' => 'required|image|mimes:png|max:2048',
+            'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
 
         ];
     }
@@ -63,7 +63,7 @@ class StoreProductRequest extends FormRequest
             'category.in' => 'La categoría seleccionada no es válida.',
             'image.required' => 'La imagen del producto es obligatoria.',
             'image.image' => 'El archivo debe ser una imagen.',
-            'image.mimes' => 'El archivo debe ser una imagen de tipo PNG.',
+            'image.mimes' => 'El archivo debe ser una imagen de tipo JPEG, JPG o PNG.',
             'image.max' => 'El tamaño máximo permitido para la imagen es de 2048 kilobytes.',
         ];
     }
