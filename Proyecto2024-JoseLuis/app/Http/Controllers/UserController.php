@@ -77,7 +77,7 @@ class UserController extends Controller
             $user->birthday = $request->birthday;
             $user->password = Hash::make($request->password);
 
-            $user->image = $request->file('image')->storeAs('public/usersProfile', $user->name . '.png');
+            $user->profile_photo = $request->file('image')->storeAs('public/usersProfile', $user->name . '.png');
 
             $user->save();
             return redirect()->route('users.show', $user->id);

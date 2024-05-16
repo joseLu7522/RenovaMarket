@@ -42,7 +42,39 @@
     "Está seguro de eliminar este producto":"",
     "Sí":"",
     "No":"",
-    "Cantidad":""
+    "Cantidad":"",
+
+    "Nombre":"",
+    "Descripción":"",
+    "Precio":"",
+    "Categoría":"",
+    "Imagen":"",
+    "Añadir producto":"",
+
+    "El nombre del producto es obligatorio.":"",
+    "El nombre del producto debe ser texto.": "",
+    "El nombre del producto debe tener al menos 4 caracteres.": "",
+    "El nombre del producto no puede tener más de 30 caracteres.": "",
+    "El nombre del producto no puede comenzar con un número.": "",
+    "La descripción del producto es obligatoria.": "",
+    "La descripción del producto no puede tener más de 200 caracteres.": "",
+    "La descripción del producto debe ser un texto.": "",
+    "La descripción del producto no puede comenzar con un número.": "",
+    "El precio del producto es obligatorio.": "",
+    "El precio del producto debe ser un número.": "",
+    "El precio del producto no puede ser negativo.": "",
+    "El precio del producto no puede ser mayor a 9999.99€.": "",
+    "El precio del producto debe tener máximo dos decimales.":"",
+    "La categoría del producto es obligatoria.": "",
+    "La categoría del producto debe ser un texto.": "",
+    "La categoría seleccionada no es válida.": "",
+    "La imagen del producto es obligatoria.": "",
+    "El archivo debe ser una imagen.": "",
+    "El archivo debe ser una imagen de tipo JPEG, JPG o PNG.": "",
+    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": ""
+
+
+
 
 
 

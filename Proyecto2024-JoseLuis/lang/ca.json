@@ -42,7 +42,37 @@
     "Está seguro de eliminar este producto":"Està segur d'eliminar aquest producte",
     "Sí":"Sí",
     "No":"No",
-    "Cantidad":"Cantitat"
+    "Cantidad":"Cantitat",
+
+    "Nombre":"Nom",
+    "Descripción":"Descripció",
+    "Precio":"Preu",
+    "Categoría":"Categoria",
+    "Imagen":"Imatge",
+    "Añadir producto":"Afegir producte",
+
+    "El nombre del producto es obligatorio.":"El nom del producte és obligatori.",
+    "El nombre del producto debe ser texto.": "El nom del producte ha de ser text",
+    "El nombre del producto debe tener al menos 4 caracteres.": "El nom del producte ha de tenir almenys 4 caràcters.",
+    "El nombre del producto no puede tener más de 30 caracteres.": "El nom del producte no pot tenir més de 30 caràcters.",
+    "El nombre del producto no puede comenzar con un número.": "El nom del producte no pot començar amb un número.",
+    "La descripción del producto es obligatoria.": "La descripció del producte és obligatòria.",
+    "La descripción del producto no puede tener más de 200 caracteres.": "La descripció del producte no pot tenir més de 200 caràcters.",
+    "La descripción del producto debe ser un texto.": "La descripció del producte ha de ser un text.",
+    "La descripción del producto no puede comenzar con un número.": "La descripció del producte no pot començar amb un número.",
+    "El precio del producto es obligatorio.": "El preu del producte és obligatori.",
+    "El precio del producto debe ser un número.": "El preu del producte ha de ser un número.",
+    "El precio del producto no puede ser negativo.": "El preu del producte no pot ser negatiu.",
+    "El precio del producto no puede ser mayor a 9999.99€.": "El preu del producte no pot ser major a 9999.99€.",
+    "El precio del producto debe tener máximo dos decimales.":"El preu del producte ha de tenir màxim dos decimals.",
+    "La categoría del producto es obligatoria.": "La categoria del producte és obligatòria.",
+    "La categoría del producto debe ser un texto.": "La categoria del producte ha de ser un text.",
+    "La categoría seleccionada no es válida.": "La categoria seleccionada no és vàlida.",
+    "La imagen del producto es obligatoria.": "La imatge del producte és obligatòria.",
+    "El archivo debe ser una imagen.": "L'arxiu ha de ser una imatge.",
+    "El archivo debe ser una imagen de tipo JPEG, JPG o PNG.": "L'arxiu ha de ser una imatge de tipus JPEG, JPG o PNG.",
+    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": "La grandària màxima permesa per a la imatge és de 2048 kilobytes."
 
 
 }
+

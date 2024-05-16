@@ -15,15 +15,15 @@
                     <li class="list-group-item" style="border: none; border-radius: 20px; background-color: #f0f0f0; margin-bottom: 10px;">
                         <a href="{{ route('messages.show', $message->user_product->id) }}" style="text-decoration: none; color: inherit;">
                             <div class="row align-items-center">
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <img src="/storage/userProducts/{{ $message->user_product->name }}.png" alt="Producto" style="width: 50px; height: 50px; border-radius: 50%;">
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <h5 style="margin-bottom: 0; color: #333;">{{ $message->user_product->name }}</h5>
-                                    <p class="text-muted mb-0">{{ $message->user_product->user->name }}</p>
-                                    <p class="text-muted mb-0" style="font-size: 14px; color: #555;">{{ $message->content }}</p>
+                                    <p class="text-muted mb-0">Propietario : {{ $message->user_product->user->name }}</p>
+                                    <p class="text-muted mb-0" style="font-size: 14px; color: #555;"><i class="bi bi-chat-right-dots"></i> {{ $message->content }}</p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <p class="text-end" style="font-size: 12px; color: #888;"><strong>{{ $message->created_at->format('H:i') }}</strong></p>
                                 </div>
                             </div>

@@ -1,7 +1,5 @@
 @extends('layout')
-
-@section('title', __('Añadir producto'))
-
+@section('title', __('Subir producto'))
 @section('content')
 
     <div class="container mt-5 mb-5">
@@ -9,44 +7,39 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body form-container">
-                        <h1 class="card-title text-center mb-4">Subir producto</h1>
+                        <h1 class="card-title text-center mb-4">{{ __('Subir producto') }}</h1>
                         <form action="{{ route('userProducts.store') }}" method="POST" enctype="multipart/form-data"
                             class="needs-validation">
                             @csrf
+
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nombre</label>
+                                <label for="name" class="form-label">{{ __('Nombre') }}</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     value="{{ old('name') }}">
-                                <!--ERRORES NOMBRE-->
-                                @error('name')
-                                    <div class="alert alert-danger mt-1 mb-1 small">
-                                        {{ $message }}
-                                    </div>
+                                @error('name')<!--ERRORES NOMBRE-->
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="description" class="form-label">Descripción</label>
+                                <label for="description" class="form-label">{{ __('Descripción') }}</label>
                                 <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
-                                <!--ERRORES DESCRIPCION-->
-                                @error('description')
-                                    <div class="alert alert-danger mt-1 mb-1 small">
-                                        {{ $message }}
-                                    </div>
+                                @error('description')<!--ERRORES DESCRIPCION-->
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="price" class="form-label">Precio</label>
+                                <label for="price" class="form-label">{{ __('Precio') }}</label>
                                 <input type="number" class="form-control" id="price" name="price"
-                                    value="{{ old('price', 0) }}" min="0">
-                                <!--ERRORES PRECIO-->
-                                @error('price')
-                                    <div class="alert alert-danger mt-1 mb-1 small">
-                                        {{ $message }}
-                                    </div>
+                                    value="{{ old('price', 0) }}" min="0" step="0.01">
+                                @error('price')<!--ERRORES PRECIO-->
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="category" class="form-label">Categoría</label>
+                                <label for="category" class="form-label">{{ __('Categoría') }}</label>
                                 <select class="form-control" id="category" name="category">
                                     <option value="Electrodomésticos"
                                         {{ old('category') === 'Electrodomésticos' ? 'selected' : '' }}>Electrodomésticos
@@ -61,37 +54,35 @@
                                     <option value="Informática" {{ old('category') === 'Informática' ? 'selected' : '' }}>
                                         Informática</option>
                                 </select>
-                                <!--ERRORES CATEGORÍA-->
-                                @error('category')
-                                    <div class="alert alert-danger mt-1 mb-1 small">
-                                        {{ $message }}
-                                    </div>
+                                @error('category')<!--ERRORES CATEGORÍA-->
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="image" class="form-label">Imagen</label>
+                                <label for="image" class="form-label">{{ __('Imagen') }}</label>
                                 <input type="file" class="form-control" id="image" name="image">
                                 <img id="previewimg" src="#" class="product-image mt-4" alt=" ">
-                                <!--ERRORES IMAGEN-->
-                                @error('image')
-                                    <div class="alert alert-danger mt-1 mb-1 small">
-                                        {{ $message }}
-                                    </div>
+                                @error('image')<!--ERRORES IMAGEN-->
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">Añadir producto</button>
+
+                            <button type="submit" class="btn btn-primary">{{ __('Añadir producto') }}</button>
+
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-<script>
-    image.onchange = evt => {
-  const [file] = image.files
-  if (file) {
-    previewimg.src = URL.createObjectURL(file)
-  }
-}
-</script>
+
+    <script>
+        image.onchange = evt => {
+            const [file] = image.files
+            if (file) {
+                previewimg.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
 @endsection

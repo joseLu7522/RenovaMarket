@@ -10,7 +10,8 @@
                 <div class="card background-container">
                     <div class="card-body">
                         <h1 class="card-title text-center mb-4">Editar perfil</h1>
-                        <form action="{{ route('users.update', $user->id) }}" method="POST" class="needs-validation">
+                        <form action="{{ route('users.update', $user->id) }}" method="POST" class="needs-validation"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
@@ -48,7 +49,11 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password" name="password">
+                                    <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn"><i
+                                            class="bi bi-eye-slash"></i></button>
+                                </div>
                                 <!--ERRORES DE LA CONTRASEÑA-->
                                 @error('password')
                                     <div class="alert alert-danger mt-1 mb-1 small">
@@ -56,6 +61,7 @@
                                     </div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="image" class="form-label">Imagen</label>
                                 <input type="file" class="form-control" id="image" name="image">
@@ -73,4 +79,19 @@
             </div>
         </div>
     </div>
+    <script>
+        const passwordInput = document.getElementById('password');
+        const showPasswordBtn = document.getElementById('showPasswordBtn');
+
+        showPasswordBtn.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                showPasswordBtn.innerHTML = '<i class="bi bi-eye"></i>';
+            } else {
+                passwordInput.type = 'password';
+                showPasswordBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
+            }
+        });
+    </script>
+
 @endsection

@@ -42,8 +42,36 @@
     "Está seguro de eliminar este producto":"Are you sure to remove this product",
     "Sí":"Yes",
     "No":"No",
-    "Cantidad":"Stock"
+    "Cantidad":"Stock",
 
+    "Nombre":"Name",
+    "Descripción":"Description",
+    "Precio":"Price",
+    "Categoría":"Category",
+    "Imagen":"Image",
+    "Añadir producto":"Add product",
+
+    "El nombre del producto es obligatorio.":"The product name is mandatory.",
+    "El nombre del producto debe ser texto.": "The product name must be text.",
+    "El nombre del producto debe tener al menos 4 caracteres.": "Product name must be at least 4 characters.",
+    "El nombre del producto no puede tener más de 30 caracteres.": "The product name cannot be longer than 30 characters.",
+    "El nombre del producto no puede comenzar con un número.": "The product name cannot begin with a number.",
+    "La descripción del producto es obligatoria.": "The product description is mandatory.",
+    "La descripción del producto no puede tener más de 200 caracteres.": "The product description may not be longer than 200 characters.",
+    "La descripción del producto debe ser un texto.": "“The product description must be a single character.",
+    "La descripción del producto no puede comenzar con un número.": "The product description cannot begin with a number.",
+    "El precio del producto es obligatorio.": "The price of the product is mandatory.",
+    "El precio del producto debe ser un número.": "The price of the product must be a number.",
+    "El precio del producto no puede ser negativo.": "The price of the product cannot be negative.",
+    "El precio del producto no puede ser mayor a 9999.99€.": "The price of the product cannot be greater than $9999.99.",
+    "El precio del producto debe tener máximo dos decimales.":"The price of the product must have a maximum of two decimal places.",
+    "La categoría del producto es obligatoria.": "The product category is mandatory.",
+    "La categoría del producto debe ser un texto.": "The product category must be a text.",
+    "La categoría seleccionada no es válida.": "The selected category is invalid.",
+    "La imagen del producto es obligatoria.": "The image of the product is mandatory.",
+    "El archivo debe ser una imagen.": "The file must be an image.",
+    "El archivo debe ser una imagen de tipo JPEG, JPG o PNG.": "The file must be an image of type JPEG, JPG or PNG.",
+    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": "The maximum size allowed for the image is 2048 kilobytes."
 
 
 
