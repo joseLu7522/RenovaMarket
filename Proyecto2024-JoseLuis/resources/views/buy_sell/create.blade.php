@@ -16,7 +16,8 @@
                                 <label for="name" class="form-label">{{ __('Nombre') }}</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     value="{{ old('name') }}">
-                                @error('name')<!--ERRORES NOMBRE-->
+                                @error('name')
+                                    <!--ERRORES NOMBRE-->
                                     <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
@@ -24,7 +25,8 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label">{{ __('Descripción') }}</label>
                                 <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
-                                @error('description')<!--ERRORES DESCRIPCION-->
+                                @error('description')
+                                    <!--ERRORES DESCRIPCION-->
                                     <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
@@ -33,7 +35,8 @@
                                 <label for="price" class="form-label">{{ __('Precio') }}</label>
                                 <input type="number" class="form-control" id="price" name="price"
                                     value="{{ old('price', 0) }}" min="0" step="0.01">
-                                @error('price')<!--ERRORES PRECIO-->
+                                @error('price')
+                                    <!--ERRORES PRECIO-->
                                     <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
@@ -54,7 +57,8 @@
                                     <option value="Informática" {{ old('category') === 'Informática' ? 'selected' : '' }}>
                                         Informática</option>
                                 </select>
-                                @error('category')<!--ERRORES CATEGORÍA-->
+                                @error('category')
+                                    <!--ERRORES CATEGORÍA-->
                                     <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
@@ -63,7 +67,8 @@
                                 <label for="image" class="form-label">{{ __('Imagen') }}</label>
                                 <input type="file" class="form-control" id="image" name="image">
                                 <img id="previewimg" src="#" class="product-image mt-4" alt=" ">
-                                @error('image')<!--ERRORES IMAGEN-->
+                                @error('image')
+                                    <!--ERRORES IMAGEN-->
                                     <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>

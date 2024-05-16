@@ -84,10 +84,10 @@
                                 @if (Auth::user()->rol == 'admin')
                                     <hr>
                                     <!--INICIO POPUP ELIMINAR-->
-                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal">
+                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmDeleteModal{{ $userProduct->id }}">
                                         <i class="bi bi-trash3"></i>
                                     </button>
-                                    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
+                                    <div class="modal fade" id="confirmDeleteModal{{ $userProduct->id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
