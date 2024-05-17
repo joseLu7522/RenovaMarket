@@ -14,6 +14,19 @@
     opacity: 0.5;
     pointer-events: none;
 }
+/*-----------------------------ESTRELLAS-----------------------------*/
+.star {
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.bi-star {
+    color: black;
+}
+
+.bi-star-fill {
+    color: orange;
+}
 /*------------------------------FOOTER------------------------------*/
 footer {
     background-color: #183440;
@@ -195,4 +208,10 @@ header {
     opacity: 0.5;
     pointer-events: none;
 }*/
+.product-card {
+    opacity: 1;
+}
 
+.product-card.disabled {
+    opacity: 0.5;
+}

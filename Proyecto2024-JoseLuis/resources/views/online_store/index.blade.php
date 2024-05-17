@@ -1,30 +1,20 @@
+<!--VISTA DE LA TIENDA ONLINE DONDE SE MUESTRAN TODOS LOS PRODUCTOS Y SE PUEDEN AÑADIR AL CARRITO Y VALORAR-->
 @extends('layout')
-
 @section('title', __('Tienda online'))
-
 @section('content')
-    <style>
-        .star {
-            cursor: pointer;
-            margin-right: 5px;
-        }
+<style>
+    .star-button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline: none;
+    }
 
-        .bi-star {
-            color: black;
-        }
-
-        .bi-star-fill {
-            color: orange;
-        }
-
-        .product-card {
-            opacity: 1;
-        }
-
-        .product-card.disabled {
-            opacity: 0.5;
-        }
-    </style>
+    .star-button:focus {
+        outline: none;
+    }
+</style>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark product-navbar-custom mt-5 mb-4">
             <div class="container-fluid mx-5">
@@ -92,14 +82,14 @@
                                         @csrf
                                         <div class="d-flex justify-content-center small text-warning my-2">
                                             @for ($i = 1; $i <= 5; $i++)
-                                                <span class="bi-star star"
-                                                    onclick="rate({{ $i }}, '{{ $storeProduct->id }}', {{ $storeProduct->id }})"
-                                                    id="{{ $i }}star-{{ $storeProduct->id }}"></span>
+                                            <button type="submit" class="star-button" onclick="rate({{ $i }}, '{{ $storeProduct->id }}', {{ $storeProduct->id }})">
+                                                <span class="bi-star star" id="{{ $i }}star-{{ $storeProduct->id }}"></span>
+                                            </button>
+
                                             @endfor
                                             <input type="hidden" name="rating" id="rating{{ $storeProduct->id }}"
                                                 value="0">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Valorar</button>
                                     </form>
 
 
@@ -196,21 +186,42 @@
         </div>
     </div>
     <script src="/js/search.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Cuando se carga la página, ajusta las estrellas según la puntuación almacenada
+            @foreach ($storeProducts as $storeProduct)
+                @if (Auth::check())
+                    @php
+                        $userRating = $storeProduct->users()->where('user_id', Auth::id())->first();
+                        $rating = $userRating ? $userRating->pivot->rating : 0;
+                    @endphp
+                    for (let i = 1; i <= 5; i++) {
+                        let star = document.getElementById(i + 'star-{{ $storeProduct->id }}');
+                        if (i <= {{ $rating }}) {
+                            star.classList.add('bi-star-fill');
+                        } else {
+                            star.classList.remove('bi-star-fill');
+                        }
+                    }
+                @endif
+            @endforeach
+        });
 
-@endsection
-<script>
-    function rate(count, productId, formId) {
-        // Establecer la puntuación seleccionada en un input oculto específico para este producto
-        document.getElementById("rating" + productId).value = count;
+        function rate(count, productId, formId) {
+            // Establecer la puntuación seleccionada en un input oculto específico para este producto
+            document.getElementById("rating" + productId).value = count;
 
-        // Cambiar el color de las estrellas según la puntuación seleccionada
-        for (let i = 1; i <= 5; i++) {
-            let star = document.getElementById(i + 'star-' + productId);
-            if (i <= count) {
-                star.classList.add('bi-star-fill'); // Agrega la clase 'bi-star-fill' para mostrar la estrella rellena
-            } else {
-                star.classList.remove('bi-star-fill'); // Elimina la clase 'bi-star-fill' para mostrar la estrella vacía
+            // Cambiar el color de las estrellas según la puntuación seleccionada
+            for (let i = 1; i <= 5; i++) {
+                let star = document.getElementById(i + 'star-' + productId);
+                if (i <= count) {
+                    star.classList.add('bi-star-fill'); // Agrega la clase 'bi-star-fill' para mostrar la estrella rellena
+                } else {
+                    star.classList.remove('bi-star-fill'); // Elimina la clase 'bi-star-fill' para mostrar la estrella vacía
+                }
             }
         }
-    }
-</script>
+    </script>
+
+@endsection
+

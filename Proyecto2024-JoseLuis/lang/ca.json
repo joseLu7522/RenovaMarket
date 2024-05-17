@@ -71,8 +71,11 @@
     "La imagen del producto es obligatoria.": "La imatge del producte és obligatòria.",
     "El archivo debe ser una imagen.": "L'arxiu ha de ser una imatge.",
     "El archivo debe ser una imagen de tipo JPEG, JPG o PNG.": "L'arxiu ha de ser una imatge de tipus JPEG, JPG o PNG.",
-    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": "La grandària màxima permesa per a la imatge és de 2048 kilobytes."
-
+    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": "La grandària màxima permesa per a la imatge és de 2048 kilobytes.",
+    "El stock del producto es obligatorio.":"L'estoc del producte és obligatori.",
+    "El stock del producto debe ser un número entero.":"L'estoc del producte ha de ser un nombre enter.",
+    "El stock del producto no puede ser negativo y debe de ser mínimo 1.":"L'estoc del producte no pot ser negatiu i ha de ser mínim 1.",
+    "El stock del producto no puede ser mayor a 1000.":"L'estoc del producte no pot ser major a 1000."
 
 }
 

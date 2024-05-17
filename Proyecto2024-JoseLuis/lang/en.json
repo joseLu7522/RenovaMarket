@@ -71,9 +71,10 @@
     "La imagen del producto es obligatoria.": "The image of the product is mandatory.",
     "El archivo debe ser una imagen.": "The file must be an image.",
     "El archivo debe ser una imagen de tipo JPEG, JPG o PNG.": "The file must be an image of type JPEG, JPG or PNG.",
-    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": "The maximum size allowed for the image is 2048 kilobytes."
-
-
-
+    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": "The maximum size allowed for the image is 2048 kilobytes.",
+    "El stock del producto es obligatorio.":"The product stock is mandatory.",
+    "El stock del producto debe ser un número entero.":"The product stock must be a whole number.",
+    "El stock del producto no puede ser negativo y debe de ser mínimo 1.":"Product stock cannot be negative and must be at least 1.",
+    "El stock del producto no puede ser mayor a 1000.":"Product stock cannot be greater than 1000."
 
 }

@@ -71,9 +71,11 @@
     "La imagen del producto es obligatoria.": "",
     "El archivo debe ser una imagen.": "",
     "El archivo debe ser una imagen de tipo JPEG, JPG o PNG.": "",
-    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": ""
-
-
+    "El tamaño máximo permitido para la imagen es de 2048 kilobytes.": "",
+    "El stock del producto es obligatorio.":"",
+    "El stock del producto debe ser un número entero.":"",
+    "El stock del producto no puede ser negativo y debe de ser mínimo 1.":"",
+    "El stock del producto no puede ser mayor a 1000.":""
 
 
 

@@ -1,3 +1,4 @@
+<!--VISTA FORMULARIO CREAR PRODUCTO DE LA TIENDA-->
 @extends('layout')
 @section('title', __('Añadir producto'))
 @section('content')
@@ -17,7 +18,7 @@
                                     value="{{ old('name') }}">
                                 <!--ERRORES NOMBRE-->
                                 @error('name')
-                                    <div class="alert alert-danger mt-1 mb-1 small">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
@@ -25,16 +26,16 @@
                                 <textarea class="form-control" id="description" name="description">{{ old('description') }}</textarea>
                                 <!--ERRORES DESCRIPCION-->
                                 @error('description')
-                                    <div class="alert alert-danger mt-1 mb-1 small">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="price" class="form-label">{{ __('Precio') }}</label>
                                 <input type="number" class="form-control" id="price" name="price"
-                                    value="{{ old('price', 0) }}" min="0">
+                                    value="{{ old('price', 0) }}" min="0" step="0.01">
                                 <!--ERRORES PRECIO-->
                                 @error('price')
-                                    <div class="alert alert-danger mt-1 mb-1 small">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
@@ -43,7 +44,7 @@
                                     value="{{ old('stock', 1) }}" min="1">
                                 <!--ERRORES STOCK-->
                                 @error('stock')
-                                    <div class="alert alert-danger mt-1 mb-1 small">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
 
@@ -65,7 +66,7 @@
                                 </select>
                                 <!--ERRORES CATEGORÍA-->
                                 @error('category')
-                                    <div class="alert alert-danger mt-1 mb-1 small">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
@@ -74,7 +75,7 @@
                                 <img id="previewimg" src="#" class="product-image mt-4" alt=" ">
                                 <!--ERRORES IMAGEN-->
                                 @error('image')
-                                    <div class="alert alert-danger mt-1 mb-1 small">{{ $message }}</div>
+                                    <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">{{ __('Añadir producto') }}</button>
@@ -86,10 +87,10 @@
     </div>
     <script>
         image.onchange = evt => {
-      const [file] = image.files
-      if (file) {
-        previewimg.src = URL.createObjectURL(file)
-      }
-    }
+            const [file] = image.files
+            if (file) {
+                previewimg.src = URL.createObjectURL(file)
+            }
+        }
     </script>
 @endsection

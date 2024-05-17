@@ -26,8 +26,8 @@ class StoreProductRequest extends FormRequest
         return [
             'name' => 'required|string|min:4|max:30|regex:/^[^\d]\w*/',
             'description' => 'required|max:200|string|regex:/^[^\d]\w*/',
-            'price' => 'required|numeric|min:0|max:9999.99',
-            'stock' => 'required|integer|min:0',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/|numeric|min:0|max:9999.99',
+            'stock' => 'required|integer|min:1|max:1000',
             'category' => 'required|string|in:Electrodomésticos,Moda y accesorios,Móviles,Muebles,Informática',
             'image' => 'required|image|mimes:jpeg,jpg,png|max:2048',
 
@@ -55,9 +55,11 @@ class StoreProductRequest extends FormRequest
             'price.numeric' => 'El precio del producto debe ser un número.',
             'price.min' => 'El precio del producto no puede ser negativo.',
             'price.max' => 'El precio del producto no puede ser mayor a 9999.99€.',
+            'price.regex' => 'El precio del producto debe tener máximo dos decimales.',
             'stock.required' => 'El stock del producto es obligatorio.',
             'stock.integer' => 'El stock del producto debe ser un número entero.',
-            'stock.min' => 'El stock del producto no puede ser negativo.',
+            'stock.min' => 'El stock del producto no puede ser negativo y debe de ser mínimo 1.',
+            'stock.max' => 'El stock del producto no puede ser mayor a 1000.',
             'category.required' => 'La categoría del producto es obligatoria.',
             'category.string' => 'La categoría del producto debe ser un texto.',
             'category.in' => 'La categoría seleccionada no es válida.',

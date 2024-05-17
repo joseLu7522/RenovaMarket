@@ -36,8 +36,8 @@ class UserProductController extends Controller
         if (Auth::user()) {
 
             $userProduct = new UserProduct();
-            $userProduct->name = $request->input('name');
-            $userProduct->description = $request->input('description');
+            $userProduct->name = ucfirst(mb_strtolower($request->input('name')));
+            $userProduct->description = ucfirst(mb_strtolower($request->input('description')));
             $userProduct->price = $request->input('price', 0);
             $userProduct->category = $request->input('category');
             $userProduct->user_id = Auth::user()->id;
@@ -70,9 +70,9 @@ class UserProductController extends Controller
             if (file_exists($imagePath)) {/*ELIMINA LA IMAGEN PARA LUEGO VOLVERLA A CARGAR*/
                 unlink($imagePath);
             }
-            $userProduct->name = $request->input('name');
+            $userProduct->name = ucfirst(mb_strtolower($request->input('name')));
             $userProduct->price = $request->input('price');
-            $userProduct->description = $request->input('description');
+            $userProduct->description = ucfirst(mb_strtolower($request->input('description')));
             $userProduct->category = $request->input('category');
 
             $userProduct->image = $request->file('image')->storeAs('public/userProducts', $userProduct->name . '.png');

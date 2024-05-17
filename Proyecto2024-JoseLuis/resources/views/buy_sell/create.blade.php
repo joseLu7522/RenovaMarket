@@ -1,3 +1,4 @@
+<!--VISTA FORMULARIO CREAR PRODUCTO DE USUARIO-->
 @extends('layout')
 @section('title', __('Subir producto'))
 @section('content')
