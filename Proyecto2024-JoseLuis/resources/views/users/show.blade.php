@@ -1,51 +1,17 @@
+<!--VISTA DEL PERFIL DEL USUARIO DONDE SE MUESTRAN SUS PRODUCTOS Y DATOS-->
 @extends('layout')
-
-@section('title', __('Inicio'))
-
+@section('title', __('Perfil de usuario'))
 @section('content')
-    <style>
-        .headerProfile {
-            background-color: #40606f;
-            padding: 20px;
-            border-radius: 10px;
-            position: relative;
-        }
 
-        .headerProfile .btn-editar-perfil {
-            color: white;
-            background-color: #40606f;
-            border-color: #40606f;
-        }
-
-        .headerProfile .btn-editar-perfil:hover {
-            color: #40606f;
-            background-color: white;
-        }
-
-        .headerProfile .btn-eliminar-cuenta {
-            color: white;
-            background-color: #FF5733;
-            border-color: #FF5733;
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-        }
-
-        .headerProfile .btn-eliminar-cuenta:hover {
-            color: #FF5733;
-            background-color: white;
-        }
-    </style>
     <div class="container my-5">
-
-
-        <div class="px-2 pt-3 pb-2 headerProfile">
-            <h2 class="text-center text-white fw-bold mb-4">Perfil de usuario</h2>
+        <div class="px-2 pt-3 pb-2 headerProfile"><!--INICIO HEADER DE PERFIL DE USUARIO-->
+            <h2 class="text-center text-white fw-bold mb-4">{{ __('Perfil de usuario') }}</h2>
             <div class="media align-items-center mx-5 mb-2">
                 <div class="profile mr-3">
-                    <img src="/storage/usersProfile/{{ $user->name }}.png" alt="Foto de perfil"
-                        width="90" class="rounded-circle mb-2">
-                    <a href="{{ route('users.edit', Auth::user()->id) }}" class="btn btn-editar-perfil btn-sm btn-block">Editar perfil</a>
+                    <img src="/storage/usersProfile/{{ $user->name }}.png" alt="Foto de perfil" width="90"
+                        class="rounded-circle mb-2">
+                    <a href="{{ route('users.edit', Auth::user()->id) }}"
+                        class="btn btn-editar-perfil btn-sm btn-block">{{ __('Editar perfil') }}</a>
                 </div>
                 <div class="media-body text-white">
                     <h4 class="mt-0 mb-1"><strong>{{ $user->name }}</strong></h4>
@@ -55,37 +21,35 @@
 
                 </div>
             </div>
+
             <button type="button" class="btn btn-eliminar-cuenta btn-sm" data-toggle="modal"
-            data-target="#confirmDeleteModalUser{{ $user->id }}">
-            Eliminar cuenta
-        </button>
+                data-target="#confirmDeleteModalUser{{ $user->id }}">{{ __('Eliminar cuenta') }}</button>
+            <!--INICIO POP UP DE ELIMINAR CUENTA-->
+            <div class="modal fade" id="confirmDeleteModalUser{{ $user->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
 
-        <div class="modal fade" id="confirmDeleteModalUser{{ $user->id }}" tabindex="-1" role="dialog"
-            aria-labelledby="confirmDeleteModalTitle" aria-hidden="true">
-
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="confirmDeleteModalTitle">
-                            ¿{{ __('Está seguro de eliminar su cuenta?') }}</h5>
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{ route('users.destroy', $user->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">{{ __('Sí, eliminar cuenta') }}</button>
-                        </form>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('Cancelar') }}</button>
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalTitle">
+                                ¿{{ __('Está seguro de eliminar su cuenta?') }}</h5>
+                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">{{ __('Sí, eliminar cuenta') }}</button>
+                            </form>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">{{ __('Cancelar') }}</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </div>
+            </div><!--FIN POP UP DE ELIMINAR CUENTA-->
+        </div><!--FIN HEADER DE PERFIL DE USUARIO-->
 
-
-
-        <div class="row my-5" id="product-list">
+        <div class="row my-5" id="product-list"><!--INICIO LISTA DE PRODUCTOS DEL USUARIO-->
             @forelse ($user->userProducts as $product)
                 <div class="col-md-3 mb-4 product-card">
                     <div class="card store_product h-100">
@@ -95,8 +59,6 @@
                         <div class="card-body">
                             <h5 class="card-title product-name">{{ $product->name }}</h5>
                             <p class="product-description">{{ $product->description }}</p>
-
-
 
                             <p class="card-text product-price">
                                 @if (app()->getLocale() !== 'en')
@@ -154,8 +116,8 @@
                 </div>
 
             @empty
-                <div class="alert alert-warning">No hay productos disponibles.</div>
+                <div class="alert alert-warning">{{ __('No hay productos disponibles.') }}</div>
             @endforelse
-        </div>
+        </div><!--FIN LISTA DE PRODUCTOS DEL USUARIO-->
 
     @endsection

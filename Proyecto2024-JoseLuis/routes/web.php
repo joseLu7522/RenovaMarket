@@ -27,10 +27,11 @@ Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 //RUTA PRODUCTOS DE USUARIOS
 Route::resource('userProducts', UserProductController::class);
-Route::get('/buy_sell/filter/{category}', [UserProductController::class, 'filterByCategory'])->name('userProducts.filter');
+Route::get('/user-products', [UserProductController::class, 'filterAndSort'])->name('userProducts.filterAndSort');
 //RUTAS PRODUCTOS DE TIENDA/FILTROS/VALORACIÓN
 Route::resource('storeProducts', StoreProductController::class);
-Route::get('/store/filter/{category}', [StoreProductController::class, 'filterByCategory'])->name('storeProducts.filter');
+Route::get('/store-products', [StoreProductController::class, 'filterAndSort'])->name('storeProducts.filterAndSort');
+
 Route::post('storeProducts/{storeProduct}/rate', [StoreProductController::class, 'rate'])->name('storeProducts.rate');
 //RUTAS CARRITO DE LA COMPRA
 Route::get('/cart', [BasketController::class, 'cart'])->name('cart.index');

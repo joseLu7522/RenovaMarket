@@ -13,7 +13,7 @@ class UserProductController extends Controller
     public function index()/*MUESTRA TODOS LOS PRODUCTOS DE USUARIO*/
     {
         if (Auth::user()) {
-            $userProducts = UserProduct::all();
+            $userProducts = UserProduct::Paginate(40);
             return view('buy_sell.index', compact('userProducts'));
         } else {
             return redirect()->route('home');
@@ -62,7 +62,7 @@ class UserProductController extends Controller
         }
     }
 
-    public function update(Request $request, UserProduct $userProduct)/*ACTUALIZA LOS DATOS DEL PRODUCTO MODIFICADO*/
+    public function update(UserProductRequest $request, UserProduct $userProduct)/*ACTUALIZA LOS DATOS DEL PRODUCTO MODIFICADO*/
     {
         if (Auth::user() && Auth::id() == $userProduct->user_id) {
 
@@ -103,10 +103,31 @@ class UserProductController extends Controller
         }
     }
 
-    public function filterByCategory($category)
+    public function filterAndSort(Request $request)/*FUNCION QUE FILTRA LOS PRODUCTOS POR NOMBRE Y CATEGORIA Y LOS ORDENA*/
     {
+        $query = UserProduct::query();
 
-        $userProducts = UserProduct::where('category', $category)->get();
+        if ($request->has('category') && $request->category != 'Todas las categorías') {
+            $query->where('category', $request->category);/*SACA LA CATEGORIA SELECCIONADA*/
+        }
+
+
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {/*FILTRA EL NOMBRE Y LA DESCRIPCION SEGUN LO QUE RECIBA POR EL BUSCADOR*/
+                $q->where('name', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%");
+            });
+        }
+
+        if ($request->has('sort')) {/*ORDENA POR PRECIO O DE MAYOR A MENOR O DE MENOR A MAYOR*/
+            if ($request->sort == 'price_desc') {
+                $query->orderBy('price', 'desc');
+            } elseif ($request->sort == 'price_asc') {
+                $query->orderBy('price', 'asc');
+            }
+        }
+        $userProducts = $query->paginate(40);
         return view('buy_sell.index', compact('userProducts'));
     }
 }

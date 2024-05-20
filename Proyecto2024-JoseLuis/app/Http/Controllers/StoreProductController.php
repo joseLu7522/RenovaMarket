@@ -11,7 +11,7 @@ class StoreProductController extends Controller
 {
     public function index()/*MUESTRA TODOS LOS PRODUCTOS DE LA TIENDA PAGINADOS A CUALQUIER USUARIO*/
     {
-        $storeProducts = StoreProduct::Paginate(20);
+        $storeProducts = StoreProduct::Paginate(40);
         return view('online_store.index', compact('storeProducts'));
     }
 
@@ -101,21 +101,42 @@ class StoreProductController extends Controller
         }
     }
 
-    public function filterByCategory($category)
+    public function filterAndSort(Request $request)/*FUNCION QUE FILTRA LOS PRODUCTOS POR NOMBRE Y CATEGORIA Y LOS ORDENA*/
     {
+        $query = StoreProduct::query();
 
-        $storeProducts = StoreProduct::where('category', $category)->get();
+        if ($request->has('category') && $request->category != 'Todas las categorías') {
+            $query->where('category', $request->category);/*SACA LA CATEGORIA SELECCIONADA*/
+        }
+
+
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {/*FILTRA EL NOMBRE Y LA DESCRIPCION SEGUN LO QUE RECIBA POR EL BUSCADOR*/
+                $q->where('name', 'like', "%$search%")
+                    ->orWhere('description', 'like', "%$search%");
+            });
+        }
+
+        if ($request->has('sort')) {/*ORDENA POR PRECIO O DE MAYOR A MENOR O DE MENOR A MAYOR*/
+            if ($request->sort == 'price_desc') {
+                $query->orderBy('price', 'desc');
+            } elseif ($request->sort == 'price_asc') {
+                $query->orderBy('price', 'asc');
+            }
+        }
+        $storeProducts = $query->paginate(40);
         return view('online_store.index', compact('storeProducts'));
     }
-    public function rate(Request $request, $storeProduct)
+    public function rate(Request $request, $storeProduct)/*FUNCION QUE GESTIONA LA VALORACION DE LOS PRODUCTOS*/
     {
         if (Auth::user()) {
             $storeProduct = StoreProduct::find($storeProduct);
             if ($storeProduct) {
 
-                $existingRating = Auth::user()->storeProducts()->where('store_product_id', $storeProduct->id)->first();
+                $existingRating = Auth::user()->storeProducts()->where('store_product_id', $storeProduct->id)->first();/*VERIFICA SI YA HAY UNA VALORACION*/
 
-                if ($existingRating) {
+                if ($existingRating) {/*SI EXISTE LA ACTUALIZA SI NO , LA AÑADE*/
                     $existingRating->pivot->rating = $request->rating;
                     $existingRating->pivot->save();
                 } else {

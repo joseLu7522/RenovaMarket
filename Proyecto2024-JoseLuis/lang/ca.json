@@ -75,7 +75,18 @@
     "El stock del producto es obligatorio.":"L'estoc del producte és obligatori.",
     "El stock del producto debe ser un número entero.":"L'estoc del producte ha de ser un nombre enter.",
     "El stock del producto no puede ser negativo y debe de ser mínimo 1.":"L'estoc del producte no pot ser negatiu i ha de ser mínim 1.",
-    "El stock del producto no puede ser mayor a 1000.":"L'estoc del producte no pot ser major a 1000."
+    "El stock del producto no puede ser mayor a 1000.":"L'estoc del producte no pot ser major a 1000.",
+    "Editar Producto":"Editar Producte",
+    "No hay productos disponibles.":"No hi ha productes disponibles.",
+    "Perfil de usuario":"Perfil d'usuari",
+    "Eliminar cuenta":"Eliminar compte",
+    "Está seguro de eliminar su cuenta?":"Està segur d'eliminar el seu compte?",
+    "Sí, eliminar cuenta":"Sí, eliminar compte",
+    "Cancelar":"Cancel·lar",
+    "Correo electrónico":"Correu electrònic",
+    "Fecha de cumpleaños":"Data d'aniversari",
+    "Contraseña":"Contrasenya",
+    "Guardar cambios":"Desar canvis"
 
 }
 

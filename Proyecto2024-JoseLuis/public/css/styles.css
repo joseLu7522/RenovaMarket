@@ -5,6 +5,11 @@
 .section-content {
     min-height: 450px;
 }
+/*--------------ACTIVO DEL DESPLEGABLE PERSONALIZADO----------------*/
+.navbar .dropdown-menu .dropdown-item.custom-active {
+    background-color: #f0f0f0;
+}
+
 /*------------------------------BANDERA------------------------------*/
 .flag {
     height: 17px;
@@ -26,6 +31,17 @@
 
 .bi-star-fill {
     color: orange;
+}
+.star-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.star-button:focus {
+    outline: none;
 }
 /*------------------------------FOOTER------------------------------*/
 footer {
@@ -204,14 +220,67 @@ header {
     font-size: 10px;
 }
 
-/*.out-of-stock {
+.out-of-stock {
     opacity: 0.5;
     pointer-events: none;
-}*/
-.product-card {
-    opacity: 1;
 }
 
-.product-card.disabled {
-    opacity: 0.5;
+.product-stock.out-of-stock {
+    color: red;
+}
+/*-------------------------------PAGINACIÓN----------------------------------*/
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination {
+    margin: 0;
+}
+.pagination .page-link {
+    color: #2a5060;
+    border: 1px solid #dee2e6;
+    margin: 0 2px;
+    border-radius: 4px;
+}
+.pagination .page-item.active .page-link {
+    background-color: #2a5060;
+    border-color: #2a5060;
+    color: white;
+}
+.pagination .page-link:hover {
+    background-color: #3b6577;
+    color: white;
+}
+/*----------------------------PERFIL DE USUARIO--------------------------------*/
+.headerProfile {
+    background-color: #40606f;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.headerProfile .btn-editar-perfil {
+    color: white;
+    background-color: #40606f;
+    border-color: #40606f;
+}
+
+.headerProfile .btn-editar-perfil:hover {
+    color: #40606f;
+    background-color: white;
+}
+
+.headerProfile .btn-eliminar-cuenta {
+    color: white;
+    background-color: #FF5733;
+    border-color: #FF5733;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.headerProfile .btn-eliminar-cuenta:hover {
+    color: #FF5733;
+    background-color: white;
 }

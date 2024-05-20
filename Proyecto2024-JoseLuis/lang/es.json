@@ -75,11 +75,18 @@
     "El stock del producto es obligatorio.":"",
     "El stock del producto debe ser un número entero.":"",
     "El stock del producto no puede ser negativo y debe de ser mínimo 1.":"",
-    "El stock del producto no puede ser mayor a 1000.":""
-
-
-
-
+    "El stock del producto no puede ser mayor a 1000.":"",
+    "Editar Producto":"",
+    "No hay productos disponibles.":"",
+    "Perfil de usuario":"",
+    "Eliminar cuenta":"",
+    "Está seguro de eliminar su cuenta?":"",
+    "Sí, eliminar cuenta":"",
+    "Cancelar":"",
+    "Correo electrónico":"",
+    "Fecha de cumpleaños":"",
+    "Contraseña":"",
+    "Guardar cambios":""
 
 
 

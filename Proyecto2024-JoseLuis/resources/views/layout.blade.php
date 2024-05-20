@@ -1,3 +1,4 @@
+<!--PAGINA WEB RENOVAMARKET JOSE LUIS SANCHEZ BOSCH-->
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 

@@ -1,3 +1,4 @@
+<!--FOOTER DE LA APLICACIÓN-->
 <footer class="text-center text-lg-start">
     <div class="container p-4">
         <section>
@@ -31,11 +32,14 @@
                 </div>
                 <!--ICONOS REDES SOCIALES-->
                 <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-                    <a class="btn btn-outline-light btn-floating m-1" role="button"><i class="bi bi-facebook"></i></a>
-                    <a class="btn btn-outline-light btn-floating m-1" role="button"><i class="bi bi-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-floating m-1" role="button"><i
-                            class="bi bi-envelope-at-fill"></i></a>
-                    <a class="btn btn-outline-light btn-floating m-1" role="button"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/" class="btn btn-outline-light btn-floating m-1" role="button"
+                        target="_blank"><i class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/" class="btn btn-outline-light btn-floating m-1" role="button"
+                        target="_blank"><i class="bi bi-twitter"></i></a>
+                    <a href="https://www.google.com/intl/es/gmail/about/" class="btn btn-outline-light btn-floating m-1"
+                        role="button" target="_blank"><i class="bi bi-envelope-at-fill"></i></a>
+                    <a href="https://www.instagram.com/" class="btn btn-outline-light btn-floating m-1" role="button"
+                        target="_blank"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </section>

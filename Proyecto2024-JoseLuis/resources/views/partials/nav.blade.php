@@ -1,3 +1,4 @@
+<!--NAVBAR DE LA APLICACIÓN-->
 <header>
     <img src="/img/logo.png" alt="Logo" class="logo">
     <h1 class="title">RenovaMarket</h1>
@@ -12,34 +13,41 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('storeProducts.index') }}">{{ __('Tienda online') }}</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"><!--INICIO ENLACES HEADER-->
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('storeProducts.index') ? 'active' : '' }}"
+                        href="{{ route('storeProducts.index') }}">{{ __('Tienda online') }}</a>
                 </li>
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('userProducts.index') }}">{{ __('Compra-venta') }}</a>
+                        <a class="nav-link {{ request()->routeIs('userProducts.index') ? 'active' : '' }}"
+                            href="{{ route('userProducts.index') }}">{{ __('Compra-venta') }}</a>
                     </li>
                     @if (Auth::user()->rol == 'admin')
                         <li class="nav-item">
-                            <a class="nav-link"
+                            <a class="nav-link {{ request()->routeIs('userProducts.create') ? 'active' : '' }}"
+                                href="{{ route('userProducts.create') }}">{{ __('Subir producto') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('storeProducts.create') ? 'active' : '' }}"
                                 href="{{ route('storeProducts.create') }}">{{ __('Añadir producto a tienda') }}</a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('userProducts.create') }}">{{ __('Subir producto') }}</a>
+                            <a class="nav-link {{ request()->routeIs('userProducts.create') ? 'active' : '' }}"
+                                href="{{ route('userProducts.create') }}">{{ __('Subir producto') }}</a>
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('messages.index') }}">{{ __('Mensajes') }}</a>
+                        <a class="nav-link {{ request()->routeIs('messages.index') ? 'active' : '' }}"
+                            href="{{ route('messages.index') }}">{{ __('Mensajes') }}</a>
                     </li>
-
                 @endauth
-
-            </ul>
+            </ul><!--FIN ENLACES HEADER-->
             <ul class="navbar-nav">
                 @auth
                     @if (request()->routeIs('storeProducts.index'))
+                        <!--SI LA PAGINA ES LA DE PRODUCTOS DE TIENDA MUESTRA EL CARRITO-->
                         <a class="nav-link" href="{{ route('cart.index') }}">
                             <i class="bi bi-cart4"></i>
                             {{ \Cart::session(Auth::user())->getTotalQuantity() }}
@@ -47,7 +55,7 @@
                     @endif
                 @endauth
 
-                <div class="dropdown show">
+                <div class="dropdown show"><!--INICIO DESPLEGABLE DE IDIOMAS-->
                     <a class="btn dropdown-toggle nav-link" href="#" role="button" id="dropdownMenuLink"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="bi bi-globe2"></i>
@@ -76,28 +84,25 @@
                             @endif
                         </form>
                     </div>
-                </div>
+                </div><!--FIN DESPLEGABLE DE IDIOMAS-->
                 @auth
-                    <div class="dropdown show">
+                    <div class="dropdown show"><!--INICIO DESPLEGABLE DE PERFIL-->
                         <a class="btn dropdown-toggle nav-link" href="{{ route('home', Auth::user()) }}" role="button"
                             id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="bi bi-person-lines-fill"></i> {{ ucfirst(Auth::user()->name) }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item"
+                            <a class="dropdown-item {{ request()->routeIs('users.show', Auth::user()) ? 'custom-active' : '' }}"
                                 href="{{ route('users.show', Auth::user()) }}">{{ __('Perfil') }}</a>
-                            <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">{{ __('Editar perfil') }}</a>
-                            @if (Auth::user()->rol == 'admin')
-                                <a class="dropdown-item"
-                                    href="{{ route('storeProducts.create') }}">{{ __('Subir producto') }}</a>
-                            @else
-                                <a class="dropdown-item"
-                                    href="{{ route('userProducts.create') }}">{{ __('Subir producto') }}</a>
-                            @endif
-                            <a class="dropdown-item"href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i>
+                            <a class="dropdown-item {{ request()->routeIs('users.edit', Auth::user()->id) ? 'custom-active' : '' }}"
+                                href="{{ route('users.edit', Auth::user()->id) }}">{{ __('Editar perfil') }}</a>
+                            <a class="dropdown-item {{ request()->routeIs('userProducts.create') ? 'custom-active' : '' }}"
+                                href="{{ route('userProducts.create') }}">{{ __('Subir producto') }}</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"><i class="bi bi-box-arrow-right"></i>
                                 {{ __('Cerrar sesión') }}</a>
                         </div>
-                    </div>
+
+                    </div><!--FIN DESPLEGABLE DE PERFIL-->
                 @else
                     <li class="nav-item">
                         <a href="{{ route('loginForm') }}" class="nav-link">{{ __('Iniciar sesión') }}</a>
