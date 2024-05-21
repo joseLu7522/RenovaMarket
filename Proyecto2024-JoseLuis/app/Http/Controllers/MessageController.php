@@ -11,49 +11,49 @@ use Illuminate\Support\Facades\Auth;
 class MessageController extends Controller
 {
 
-    public function index()
-    {
-        $userId = auth()->id();
-
-        $messages = Message::with('user_product')
-            ->where('sender_id', $userId)
-            ->orWhere('receiver_id', $userId)
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $chats = collect([]);
-        $uniqueProducts = collect([]);
-
-        foreach ($messages as $message) {
-            $productId = $message->user_product_id;
-            if (!$uniqueProducts->contains($productId)) {
-                $chats->push($message);
-                $uniqueProducts->push($productId);
-            }
-        }
-
-        return view('messages.index', compact('chats'));
-    }
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index()/*MUESTRA TODOS LOS CHATS DEL USUARIO AUTENTICADO*/
     {
         if (Auth::user()) {
-        return view('messages.create');
-        }else {
+            /*OBTIENE TODOS LOS MENSAJES RELACIONADOS CON EL USUARIO AUTENTICADO BIEN SEA EL REMITENTE O EL RECEPTOR Y LOS ORDENA*/
+            $messages = Message::with('user_product')
+                ->where('sender_id', auth()->id())
+                ->orWhere('receiver_id', auth()->id())
+                ->orderBy('created_at', 'desc')
+                ->get();
+
+            $chats = collect([]);/*ALMACENA LOS CHATS*/
+            $uniqueProducts = collect([]);/*ALMACENA LOS IDS DE LOS PRODUCTOS*/
+
+            foreach ($messages as $message) {
+
+                $productId = $message->user_product_id;
+                /*SI AUN NO SE A ABIERTO UN CHAT DEL PRODUCTO , SE ALMACENA PARA CREAR EL CHAT CON ESE PRODUCTO*/
+                if (!$uniqueProducts->contains($productId)) {
+                    $chats->push($message);
+                    $uniqueProducts->push($productId);
+                }
+            }
+
+            return view('messages.index', compact('chats'));
+
+        } else {
             return redirect()->route('home');
 
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function create()/*REDIRIJE A LA VISTA DE CREAR EL MENSAJE*/
+    {
+        if (Auth::user()) {
+            return view('messages.create');
+        } else {
+            return redirect()->route('home');
+
+        }
+    }
+
+
+    public function store(Request $request)/*ALMACENA LOS MENSAJES ENVIADOS*/
     {
         // Obtener el producto asociado al mensaje
         $userProduct = UserProduct::findOrFail($request->user_product_id);

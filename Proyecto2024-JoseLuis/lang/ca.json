@@ -86,7 +86,35 @@
     "Correo electrónico":"Correu electrònic",
     "Fecha de cumpleaños":"Data d'aniversari",
     "Contraseña":"Contrasenya",
-    "Guardar cambios":"Desar canvis"
+    "Guardar cambios":"Desar canvis",
+
+    "Ya existe un usuario con este nombre.":"Ja existeix un usuari amb aquest nom.",
+    "El campo nombre es obligatorio.":"El camp nomeni és obligatori.",
+    "El campo nombre debe ser una cadena de texto.":"El camp nomeni ha de ser una cadena de text.",
+    "El campo nombre debe tener al menos 4 caracteres.":"El camp nomeni ha de tenir almenys 4 caràcters.",
+    "El campo nombre no puede tener más de 20 caracteres.":"El camp nomeni no pot tenir més de 20 caràcters.",
+    "El campo nombre no debe empezar por un número.":"El camp nomeni no ha de començar per un número.",
+    "El campo correo es obligatorio.":"El camp correu és obligatori.",
+    "El campo correo debe ser una dirección de correo electrónico válida.":"El camp correu ha de ser una adreça de correu electrònic vàlida.",
+    "El campo correo debe tener al menos 10 caracteres.":"El camp correu ha de tenir almenys 10 caràcters.",
+    "El campo correo no puede tener más de 50 caracteres.":"El camp correu no pot tenir més de 50 caràcters.",
+    "Ya existe un usuario con este email.":"Ja existeix un usuari amb aquest email.",
+    "El campo contraseña es obligatorio.":"El camp contrasenya és obligatori.",
+    "El campo contraseña debe ser una cadena de texto.":"El camp contrasenya ha de ser una cadena de text.",
+    "El campo contraseña debe tener al menos 8 caracteres.":"El camp contrasenya ha de tenir almenys 8 caràcters.",
+    "El campo fecha de nacimiento es obligatorio.":"El camp data de naixement és obligatori.",
+    "El campo fecha de nacimiento debe ser una fecha válida.":"El camp data de naixement ha de ser una data vàlida.",
+    "La foto de perfil debe ser una imagen.":"La foto de perfil ha de ser una imatge.",
+    "La foto de perfil debe ser de tipo JPEG PNG o JPG.":"La foto de perfil ha de ser de tipus JPEG PNG o JPG.",
+    "La foto de perfil no puede superar los 2MB.":"La foto de perfil no pot superar els 2MB.",
+    "Comprar":"Comprar",
+    "Datos de la Tarjeta de Crédito":"Dades de la Targeta de Crèdit",
+    "Nombre del titular":"Nom del titular",
+    "Número de tarjeta":"Número de targeta",
+    "Fecha de caducidad":"Data de caducitat",
+    "Producto":"Producte",
+    "Total a pagar":"Total a pagar",
+    "Se ha realizado la compra con exito!":"S'ha realitzat la compra amb èxit!"
 
 }
 

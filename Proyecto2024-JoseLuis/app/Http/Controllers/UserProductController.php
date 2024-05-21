@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserProductRequest;
 
-
 class UserProductController extends Controller
 {
     public function index()/*MUESTRA TODOS LOS PRODUCTOS DE USUARIO*/
@@ -129,5 +128,21 @@ class UserProductController extends Controller
         }
         $userProducts = $query->paginate(40);
         return view('buy_sell.index', compact('userProducts'));
+    }
+    public function purchase(UserProduct $userProduct)/*REPRESENTA LA VENTA DE UN PRODUCTO , ELIMINANDOLO Y MANDANDO MENSAJE DE CORRECTO PARA SIMILAR UNA COMPRA REAL*/
+    {
+        if (Auth::check()) {
+
+            $imagePath = public_path('storage/userProducts/' . $userProduct->name . '.png');
+            $userProduct->delete();
+            if (file_exists($imagePath)) {/*ELIMINA LA IMAGEN DEL STORAGE*/
+                unlink($imagePath);
+            }
+            return redirect()->route('userProducts.index')->with('success_msg', 'Se ha realizado la compra con exito!');
+
+
+        } else {
+            return redirect()->route('home');
+        }
     }
 }

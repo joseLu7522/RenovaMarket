@@ -27,6 +27,7 @@ class SignupRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 $rules['email'] = 'required|email|min:10|max:50|unique:users';
+                $rules['name'] = 'required|string|min:4|max:20|regex:/^(?!\\d)[\\w.\\-]+$/|unique:users';
                 break;
             case 'PUT':
                 $rules['email'] = [
@@ -36,9 +37,16 @@ class SignupRequest extends FormRequest
                     'max:50',
                     Rule::unique('users')->ignore($this->user->id)
                 ];
+                $rules['name'] = [
+                    'required',
+                    'string',
+                    'min:4',
+                    'max:20',
+                    'regex:/^(?!\\d)[\\w.\\-]+$/',
+                    Rule::unique('users')->ignore($this->user->id)
+                ];
                 break;
         }
-        $rules['name'] = 'required|string|min:4|max:20|regex:/^(?!\\d)[\\w.\\-]+$/';
         $rules['password'] = 'required|string|min:8';
         $rules['birthday'] = [
             'required',
@@ -65,6 +73,7 @@ class SignupRequest extends FormRequest
             'name.min' => 'El campo nombre debe tener al menos 4 caracteres.',
             'name.max' => 'El campo nombre no puede tener más de 20 caracteres.',
             'name.regex' => 'El campo nombre no debe empezar por un número.',
+            'name.unique' => 'Ya existe un usuario con este nombre.',
             'email.required' => 'El campo correo es obligatorio.',
             'email.email' => 'El campo correo debe ser una dirección de correo electrónico válida.',
             'email.min' => 'El campo correo debe tener al menos 10 caracteres.',

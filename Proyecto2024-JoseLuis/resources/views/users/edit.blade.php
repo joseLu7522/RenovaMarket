@@ -80,7 +80,7 @@
             </div>
         </div>
     </div>
-    <script>
+    <script>/*SCRIPT QUE HACE LA FUNCION PARA VER O NO LA CONTRASEÑA A LA HORA DE EDITARLA*/
         const passwordInput = document.getElementById('password');
         const showPasswordBtn = document.getElementById('showPasswordBtn');
 

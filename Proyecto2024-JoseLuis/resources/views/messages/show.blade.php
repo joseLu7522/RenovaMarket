@@ -1,10 +1,8 @@
 @extends('layout')
-
 @section('title', 'Mensajes del Producto')
-
 @section('content')
 
-<section style="background-color: #eee;">
+<section>
     <div class="container py-5">
 
       <div class="row d-flex justify-content-center">
@@ -27,7 +25,7 @@
                 <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm" data-mdb-ripple-color="dark">Let's Chat App</button>
             </div>
 
-            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; max-height: 400px; overflow-y: auto;">
+            <div id="messageContainer" class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; max-height: 350px;min-height: 350px; overflow-y: auto;">
 
               @foreach ($messages as $message)
                 <div class="d-flex flex-row justify-content-{{ $message->sender_id == auth()->id() ? 'end' : 'start' }} mb-4">
@@ -67,4 +65,11 @@
 
     </div>
   </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const messageContainer = document.getElementById('messageContainer');
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+    });
+</script>
+
 @endsection

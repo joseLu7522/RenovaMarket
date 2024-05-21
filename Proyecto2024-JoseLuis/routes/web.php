@@ -28,6 +28,8 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 //RUTA PRODUCTOS DE USUARIOS
 Route::resource('userProducts', UserProductController::class);
 Route::get('/user-products', [UserProductController::class, 'filterAndSort'])->name('userProducts.filterAndSort');
+Route::delete('/purchase/{userProduct}', [UserProductController::class, 'purchase'])->name('userProducts.purchase');
+
 //RUTAS PRODUCTOS DE TIENDA/FILTROS/VALORACIÓN
 Route::resource('storeProducts', StoreProductController::class);
 Route::get('/store-products', [StoreProductController::class, 'filterAndSort'])->name('storeProducts.filterAndSort');
