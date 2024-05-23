@@ -138,7 +138,7 @@ class UserProductController extends Controller
             if (file_exists($imagePath)) {/*ELIMINA LA IMAGEN DEL STORAGE*/
                 unlink($imagePath);
             }
-            return redirect()->route('userProducts.index')->with('success_msg', 'Se ha realizado la compra con exito!');
+            return redirect()->route('userProducts.index')->with('success_msg', 'Se ha realizado la compra con éxito!');
 
 
         } else {

@@ -7,36 +7,11 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SignupRequest;
 use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
+    public function show(User $user)/*MUESTRA EL PERFIL DEL USUARIO Y TODOS SUS PRODUCTOS*/
     {
 
         if (Auth::user() && Auth::user()->id === $user->id) {
@@ -50,22 +25,18 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
+
+    public function edit(User $user)/*REDIRIGE AL FORMULARIO DE EDITAR PERFIL*/
     {
-     if (Auth::user() && Auth::id() === $user->id) {
+        if (Auth::user() && Auth::id() === $user->id) {
             return view('users.edit', compact('user'));
         } else {
             return redirect()->route('home');
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(SignupRequest $request, User $user)
+
+    public function update(SignupRequest $request, User $user)/*GUARDA LOS DATOS DEL FORMULARIO DE EDICION Y ACTUALIZA LOS DATOS*/
     {
         if (Auth::user() && Auth::id() === $user->id) {
             $imagePath = public_path('storage/usersProfile/' . $user->name . '.png');
@@ -86,18 +57,22 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
+
+    public function destroy(User $user)/*ELIMINA LA CUENTA DEL USUARIO Y TODO LO RELACIONADO CON EL USUARIO*/
     {
-        $imagePath = public_path('storage/usersProfile/' . $user->name .'.png');
-        $user->delete();
 
-        if (file_exists($imagePath)) {
-            unlink($imagePath);
+        if (Auth::user() && Auth::id() === $user->id) {
+            $imagePath = public_path('storage/usersProfile/' . $user->name . '.png');
+            $user->delete();
+
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+
+            return redirect()->route('home');
+        } else {
+            return redirect()->route('home');
         }
-
-        return redirect()->route('home');
     }
+
 }

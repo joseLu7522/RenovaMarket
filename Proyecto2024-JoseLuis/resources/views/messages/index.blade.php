@@ -7,13 +7,12 @@
 
         <div class="card">
             <div class="card-body">
-                <h1 class="my-4 text-center chats-title">Listado de Chats</h1>
+                <h1 class="my-4 text-center chats-title">{{ __('Listado de Chats') }}</h1>
                 <ul class="list-group list-group-flush">
 
-                    @foreLSE($chats as $message)
+                    @forelse($chats as $message)
                         <li class="list-group-item mb-4" style="border: none; border-radius: 20px; background-color: #f0f0f0;">
-                            <a href="{{ route('messages.show', $message->user_product->id) }}"
-                                style="text-decoration: none; color: inherit;">
+                            <a href="{{ route('messages.show', $message->user_product->id) }}" class="link-message">
                                 <div class="row align-items-center">
                                     <div class="col-md-1">
                                         <img src="/storage/userProducts/{{ $message->user_product->name }}.png"
@@ -21,7 +20,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <h5 class="chat-product-name">{{ $message->user_product->name }}</h5>
-                                        <p class="text-muted mb-0">Propietario : {{ $message->user_product->user->name }}
+                                        <p class="text-muted mb-0">{{ __('Propietario') }} : {{ $message->user_product->user->name }}
                                         </p>
                                         <p class="text-muted mb-0 chat-message-content"><i
                                                 class="bi bi-chat-right-dots"></i> {{ $message->content }}</p>

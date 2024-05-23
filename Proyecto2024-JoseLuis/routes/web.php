@@ -46,5 +46,6 @@ Route::resource('users', UserController::class);
 /*RUTA DE LOS MENSAJES*/
 Route::resource('messages', MessageController::class);
 /*GENERAR FACTURAS*/
-Route::get('/cart/generateInvoice', [InvoiceController::class, 'generateInvoice'])->name('orders.generateInvoice');
+Route::post('/complete-purchase', [InvoiceController::class, 'completePurchase'])->name('orders.completePurchase');
+Route::get('/generate-invoice', [InvoiceController::class, 'generateInvoice'])->name('orders.generateInvoice');
 

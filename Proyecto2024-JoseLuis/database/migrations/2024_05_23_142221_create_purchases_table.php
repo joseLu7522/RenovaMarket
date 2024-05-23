@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wishlist_storage', function (Blueprint $table) {
-            $table->longText('id')->index();
-            $table->longText('wishlist_data');
+        Schema::create('purchases', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->json('purchase_data');
+            $table->decimal('total', 10, 2);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wishlist_storage');
+        Schema::dropIfExists('purchases');
     }
 };

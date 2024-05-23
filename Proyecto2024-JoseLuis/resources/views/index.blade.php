@@ -1,8 +1,12 @@
+<!--INICIO DE LA APLICACION Y POP UP DE COMPRA EXITOSA-->
 @extends('layout')
-
 @section('title', __('Inicio'))
-
 @section('content')
+    <form id="clear-cart-form" action="{{ route('cart.clear') }}" method="POST" style="display: none;">
+        @csrf
+        <button type="submit" class="btn btn-danger">{{ __('Vaciar Carrito') }}</button>
+    </form>
+
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-interval="5000">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -41,5 +45,28 @@
             </div>
         </div>
     </div>
+    @if (session()->has('success_purchase'))
+        <!-- SweetAlert2 Script -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+        <!-- Pop-up de JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: '{{ __('Compra exitosa') }}',
+                    text: '{{ __('¿Desea imprimir la factura?') }}',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: '{{ __('Imprimir') }}',
+                    cancelButtonText: '{{ __('Cancelar') }}'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.open('{{ route('orders.generateInvoice') }}', '_blank');
+                    } else {
+                        document.getElementById('clear-cart-form').submit();
+                    }
+                });
+            });
+        </script>
+    @endif
 @endsection

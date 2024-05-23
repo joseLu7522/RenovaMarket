@@ -55,55 +55,40 @@ class MessageController extends Controller
 
     public function store(Request $request)/*ALMACENA LOS MENSAJES ENVIADOS*/
     {
-        // Obtener el producto asociado al mensaje
+
         $userProduct = UserProduct::findOrFail($request->user_product_id);
 
-        // Obtener el ID del usuario registrado
-        $userId = auth()->id();
+        if (auth()->id() == $userProduct->user_id) {/*SI EL USUARIO REGISTRADO ES EL PROPIETARIO ASIGNA COMO RECEPTOR AL ULTIMO REMITENTE QUE NO SEA EL REGISTRADO*/
 
-        // Verificar si el usuario registrado es el propietario del producto
-        if ($userId == $userProduct->user_id) {
-            // Si es el propietario, asignar como receptor al último remitente que no sea el usuario registrado
             $lastSender = Message::where('user_product_id', $request->user_product_id)
-                ->where('sender_id', '!=', $userId)
+                ->where('sender_id', '!=', auth()->id())
                 ->orderBy('created_at', 'desc')
                 ->first();
 
-            // Si se encuentra un último remitente, asignarlo como receptor
-            if ($lastSender) {
+            if ($lastSender) {/*SI HAY UN ULTIMO REMITENTE SE ASIGNA COMO RECEPTOR*/
                 $messageReceiverId = $lastSender->sender_id;
-            } else {
-                // Si no se encuentra ningún remitente anterior, asignar al propietario del producto como receptor
+            } else {/*ASIGNA AL PROPIETARIO COMO RECEPTOR*/
                 $messageReceiverId = $userProduct->user_id;
             }
         } else {
-            // Si el usuario registrado no es el propietario, asignar al propietario del producto como receptor
             $messageReceiverId = $userProduct->user_id;
         }
 
-        // Crear un nuevo mensaje
         $message = new Message();
-        $message->sender_id = $userId; // Usuario registrado como remitente
-        $message->receiver_id = $messageReceiverId; // Asignar al receptor calculado
+        $message->sender_id = auth()->id();
+        $message->receiver_id = $messageReceiverId;
         $message->user_product_id = $request->user_product_id;
         $message->content = $request->input('content');
         $message->save();
 
-        // Redireccionar de vuelta a la vista de mensajes del producto
         return redirect()->route('messages.show', $userProduct);
     }
 
-
-
-
-    /**
-     * Display the specified resource.
-     */
     public function show($productId)
     {
-
-        // Obtener todos los mensajes asociados al producto y al usuario registrado
         $userId = auth()->id();
+
+        /*OBTIENE TODOSLOS MENSAJES ASOCIADOS AL PRODUCTO Y AL USUARIO*/
         $messages = Message::where('user_product_id', $productId)
             ->where(function ($query) use ($userId) {
                 $query->where('sender_id', $userId)
@@ -112,36 +97,15 @@ class MessageController extends Controller
             ->orderBy('created_at')
             ->get();
 
-        // Obtener información del producto
+        /*AL ENTRAR A LA RUTA DE SHOW MARCA COMO LEIDOS LOS MENSAJES*/
+        Message::where('user_product_id', $productId)
+            ->where('receiver_id', $userId)
+            ->where('read', false)
+            ->update(['read' => true]);
+
         $product = UserProduct::findOrFail($productId);
 
         return view('messages.show', compact('messages', 'product'));
-    }
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Message $message)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Message $message)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Message $message)
-    {
-        //
     }
 
 

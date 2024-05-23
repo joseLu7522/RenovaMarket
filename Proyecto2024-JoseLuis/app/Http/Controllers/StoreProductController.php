@@ -11,7 +11,7 @@ class StoreProductController extends Controller
 {
     public function index()/*MUESTRA TODOS LOS PRODUCTOS DE LA TIENDA PAGINADOS A CUALQUIER USUARIO*/
     {
-        $storeProducts = StoreProduct::Paginate(40);
+        $storeProducts = StoreProduct::paginate(40);
         return view('online_store.index', compact('storeProducts'));
     }
 

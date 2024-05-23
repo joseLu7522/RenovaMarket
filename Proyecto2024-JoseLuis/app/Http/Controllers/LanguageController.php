@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class LanguageController extends Controller
 {
-    public function changeLanguage(Request $request)
+    public function changeLanguage(Request $request)/*CAMBIA EL IDIOMA AL SELECCIONADO*/
     {
         $request->validate([
             'locale' => 'required|in:en,es,ca',

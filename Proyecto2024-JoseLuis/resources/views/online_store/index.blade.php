@@ -4,6 +4,21 @@
 @section('content')
 
     <div class="container">
+        @if (session()->has('success_msg'))
+            <!--MENSAJE DE PRODUCTO AÑADIDO CON EXITO-->
+            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                {{ __(session()->get('success_msg')) }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if (session()->has('error_msg'))
+            <!-- MENSAJE DE ERROR AL AÑADIR UN PRODUCTO AL CARRITO-->
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                {{ __(session()->get('error_msg')) }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <!--INICIO DEL NAVBAR DE LOS FILTROS-->
         <nav class="navbar navbar-expand-lg navbar-dark product-navbar-custom mt-5 mb-4">
             <div class="container-fluid mx-5">
@@ -105,9 +120,12 @@
                                 </p>
                                 <form action="{{ route('cart.store') }}" method="POST">
                                     {{ csrf_field() }}
-                                    <input type="hidden" value="{{ $storeProduct->id }}" id="id" name="id">
-                                    <input type="hidden" value="{{ $storeProduct->name }}" id="name" name="name">
-                                    <input type="hidden" value="{{ $storeProduct->price }}" id="price" name="price">
+                                    <input type="hidden" value="{{ $storeProduct->id }}" id="id"
+                                        name="id">
+                                    <input type="hidden" value="{{ $storeProduct->name }}" id="name"
+                                        name="name">
+                                    <input type="hidden" value="{{ $storeProduct->price }}" id="price"
+                                        name="price">
                                     <input type="hidden" value="{{ $storeProduct->description }}" id="description"
                                         name="description">
                                     <input type="hidden" value="{{ $storeProduct->image }}" id="img"

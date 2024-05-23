@@ -7,30 +7,64 @@ use LaravelDaily\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Buyer;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\StoreProduct;
+use App\Models\Purchase;
 class InvoiceController extends Controller
 {
-    public function generateInvoice(Request $request)
+
+    public function completePurchase(Request $request)
     {
-        // Decodificar y deserializar el array JSON de la solicitud
         $cartCollection = json_decode(urldecode($request->input('cartCollection')));
 
-        if ($cartCollection === null) {
-            // Manejar el caso en el que $cartCollection es null
-            // Por ejemplo, redireccionar a la página anterior con un mensaje de error
-            return redirect()->back()->with('error', 'No se encontraron datos del carrito');
+        if (empty($cartCollection)) {
+            return redirect()->back()->with('error_msg', 'No se encontraron datos del carrito o el carrito está vacío');
+        }
+
+        $total = 0;
+        foreach ($cartCollection as $item) {
+            $product = StoreProduct::find($item->id);
+            if ($product && $product->stock >= $item->quantity) {
+                $product->stock -= $item->quantity;
+                $product->save();
+                $total += $item->price * $item->quantity;
+            } else {
+                return redirect()->back()->with('error_msg', 'Stock insuficiente para el producto: ' . $item->name);
+            }
+        }
+
+        // Guardar los datos de la compra en la base de datos
+        $purchase = Purchase::create([
+            'user_id' => Auth::id(),
+            'purchase_data' => $cartCollection,
+            'total' => $total,
+        ]);
+
+        // Guardar los datos del carrito en la sesión
+        session(['cartCollection' => $cartCollection]);
+
+        // Redirigir a la página de inicio y establecer una variable de sesión para la factura
+        return redirect()->route('home')->with('success_purchase', 'Se ha realizado la compra con éxito!');
+    }
+
+
+    public function generateInvoice(Request $request)
+    {
+        $cartCollection = session('cartCollection');
+
+        if (empty($cartCollection)) {
+            return redirect()->back()->with('error_msg', 'No se encontraron datos del carrito o el carrito está vacío');
         }
 
         $user = Auth::user();
         $customer = new Buyer([
-            'name'          => $user->name,
+            'name' => $user->name,
             'custom_fields' => [
                 'email' => $user->email,
             ],
         ]);
 
         $seller = new Buyer([
-            'name'          => 'Renovamarket',
+            'name' => 'Renovamarket',
             'custom_fields' => [
                 'email' => 'renovaMarket@gmail.com',
                 'phone' => '601 29 18 19',
@@ -39,18 +73,20 @@ class InvoiceController extends Controller
         ]);
 
         $items = [];
-
         foreach ($cartCollection as $item) {
-            // Agrega cada producto al invoice
             $items[] = (new InvoiceItem())->title($item->name)->pricePerUnit($item->price)->quantity($item->quantity);
         }
 
         $invoice = Invoice::make()
             ->buyer($customer)
             ->seller($seller)
-            ->taxRate(21)
-            ->shipping(6)
-            ->addItems($items);
+            ->addItems($items)
+            ->save('public');
+
+        // Limpiar la sesión del carrito después de generar la factura
+        session()->forget('cartCollection');
+
+        \Cart::session(Auth::user())->clear();
 
         return $invoice->stream();
     }
