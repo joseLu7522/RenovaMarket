@@ -78,6 +78,7 @@
                                     <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                 @enderror
                             </div>
+
                             <button type="submit" class="btn btn-primary">{{ __('Añadir producto') }}</button>
                         </form>
                     </div>
@@ -86,6 +87,7 @@
         </div>
     </div>
     <script>
+        /*PREVISUALIZA LA IMAGEN AL INGRESARLA EN EL CAMPO DE EXAMINAR IMAGEN*/
         image.onchange = evt => {
             const [file] = image.files
             if (file) {

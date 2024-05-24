@@ -83,7 +83,6 @@ class InvoiceController extends Controller
             ->addItems($items)
             ->save('public');
 
-        // Limpiar la sesión del carrito después de generar la factura
         session()->forget('cartCollection');
 
         \Cart::session(Auth::user())->clear();

@@ -11,7 +11,8 @@
                 <ul class="list-group list-group-flush">
 
                     @forelse($chats as $message)
-                        <li class="list-group-item mb-4" style="border: none; border-radius: 20px; background-color: #f0f0f0;">
+                        <li class="list-group-item mb-4"
+                            style="border: none; border-radius: 20px; background-color: #f0f0f0;">
                             <a href="{{ route('messages.show', $message->user_product->id) }}" class="link-message">
                                 <div class="row align-items-center">
                                     <div class="col-md-1">
@@ -20,7 +21,8 @@
                                     </div>
                                     <div class="col-md-7">
                                         <h5 class="chat-product-name">{{ $message->user_product->name }}</h5>
-                                        <p class="text-muted mb-0">{{ __('Propietario') }} : {{ $message->user_product->user->name }}
+                                        <p class="text-muted mb-0">{{ __('Propietario') }} :
+                                            {{ $message->user_product->user->name }}
                                         </p>
                                         <p class="text-muted mb-0 chat-message-content"><i
                                                 class="bi bi-chat-right-dots"></i> {{ $message->content }}</p>

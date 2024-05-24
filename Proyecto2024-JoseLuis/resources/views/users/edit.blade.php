@@ -80,25 +80,4 @@
             </div>
         </div>
     </div>
-    <script>/*SCRIPT QUE HACE LA FUNCION PARA VER O NO LA CONTRASEÑA A LA HORA DE EDITARLA*/
-        const passwordInput = document.getElementById('password');
-        const showPasswordBtn = document.getElementById('showPasswordBtn');
-
-        showPasswordBtn.addEventListener('click', () => {
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                showPasswordBtn.innerHTML = '<i class="bi bi-eye"></i>';
-            } else {
-                passwordInput.type = 'password';
-                showPasswordBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
-            }
-        });
-        image.onchange = evt => {
-            const [file] = image.files
-            if (file) {
-                previewimg.src = URL.createObjectURL(file)
-            }
-        }
-    </script>
-
 @endsection

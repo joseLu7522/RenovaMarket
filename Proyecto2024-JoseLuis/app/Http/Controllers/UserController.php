@@ -68,7 +68,6 @@ class UserController extends Controller
             if (file_exists($imagePath)) {
                 unlink($imagePath);
             }
-
             return redirect()->route('home');
         } else {
             return redirect()->route('home');

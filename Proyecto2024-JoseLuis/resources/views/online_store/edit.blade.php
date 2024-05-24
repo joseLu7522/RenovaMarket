@@ -99,6 +99,7 @@
         </div>
     </div>
     <script>
+        /*PREVISUALIZA LA IMAGEN AL INGRESARLA EN EL CAMPO DE EXAMINAR IMAGEN*/
         image.onchange = evt => {
             const [file] = image.files
             if (file) {

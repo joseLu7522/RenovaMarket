@@ -153,7 +153,14 @@
     "y disfruta de nuestra maravillosa comunidad.":"i gaudeix de la nostra meravellosa comunitat.",
     "Nombre de usuario":"Nom d'usuari",
     "CREAR CUENTA":"CREAR COMPTE",
-    "Ya tienes cuenta?":"Ja tens compte?"
+    "Ya tienes cuenta?":"Ja tens compte?",
+    "INICIAR SESIÓN":"INICIAR SESSIÓ",
+    "Usuario":"Usuari",
+    "¿No tienes cuenta aún?":"No tens compte encara?",
+    "BIENVENIDO A NUESTRA COMUNIDAD!":"BENVINGUT A LA NOSTRA COMUNITAT!",
+    "Recordar inicio de sesión":"Recordar inici de sessió",
+    "Error al acceder a la aplicación":"Error en accedir a l'aplicació"
+
 
 
 }

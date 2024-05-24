@@ -29,22 +29,27 @@
                 <div class="collapse navbar-collapse" id="navbarNavProducts">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('Categorías') }}
+                            <a class="navbar-brand dropdown-toggle d-flex align-items-center" href="#"
+                                id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                @if (isset($selectedCategory))
+                                    {{ __($selectedCategory) }}
+                                @else
+                                    {{ __('Categorías') }}
+                                @endif
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Todas las categorías' ? 'active' : '' }}"
                                     href="{{ route('storeProducts.filterAndSort', ['category' => 'Todas las categorías']) }}">{{ __('Todas las categorías') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Electrodomésticos' ? 'active' : '' }}"
                                     href="{{ route('storeProducts.filterAndSort', ['category' => 'Electrodomésticos']) }}">{{ __('Electrodomésticos') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Moda y accesorios' ? 'active' : '' }}"
                                     href="{{ route('storeProducts.filterAndSort', ['category' => 'Moda y accesorios']) }}">{{ __('Moda y accesorios') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Móviles' ? 'active' : '' }}"
                                     href="{{ route('storeProducts.filterAndSort', ['category' => 'Móviles']) }}">{{ __('Móviles') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Muebles' ? 'active' : '' }}"
                                     href="{{ route('storeProducts.filterAndSort', ['category' => 'Muebles']) }}">{{ __('Muebles') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Informática' ? 'active' : '' }}"
                                     href="{{ route('storeProducts.filterAndSort', ['category' => 'Informática']) }}">{{ __('Informática') }}</a>
                             </div>
                         </li>
@@ -120,8 +125,7 @@
                                 </p>
                                 <form action="{{ route('cart.store') }}" method="POST">
                                     {{ csrf_field() }}
-                                    <input type="hidden" value="{{ $storeProduct->id }}" id="id"
-                                        name="id">
+                                    <input type="hidden" value="{{ $storeProduct->id }}" id="id" name="id">
                                     <input type="hidden" value="{{ $storeProduct->name }}" id="name"
                                         name="name">
                                     <input type="hidden" value="{{ $storeProduct->price }}" id="price"

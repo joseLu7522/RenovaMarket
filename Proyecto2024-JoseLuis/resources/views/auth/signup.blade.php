@@ -36,14 +36,22 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input id="inputPassword" type="password" placeholder="{{ __('Contraseña') }}"
-                                            class="form-control rounded-pill border-0 shadow-sm px-4"
-                                            value="{{ old('password') }}" name="password">
+                                        <div class="input-group position-relative">
+                                            <input id="password" type="password" placeholder="{{ __('Contraseña') }}"
+                                                class="form-control rounded-pill border-0 shadow-sm px-4"
+                                                value="{{ old('password') }}" name="password">
+                                            <button
+                                                class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent"
+                                                type="button" id="showPasswordBtn">
+                                                <i class="bi bi-eye-slash"></i>
+                                            </button>
+                                        </div>
                                         @error('password')
                                             <!--ERRORES CONTRASEÑA-->
                                             <div class="alert alert-danger mt-1 mb-1 small">{{ __($message) }}</div>
                                         @enderror
                                     </div>
+
                                     <div class="form-group mb-3">
                                         <input id="birthday" type="date"
                                             class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
@@ -55,7 +63,7 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="file" class="form-control rounded-pill border-0 shadow-sm px-4"
-                                            id="profile_photo" name="profile_photo">
+                                            id="image" name="profile_photo">
                                         <img id="previewimg" src="#" class="product-image mt-4" alt=" ">
                                         <!--ERRORES FOTO DE USUARIO-->
                                         @error('profile_photo')
@@ -73,18 +81,9 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
-    <script>
-        profile_photo.onchange = evt => {
-            const [file] = profile_photo.files
-            if (file) {
-                previewimg.src = URL.createObjectURL(file)
-            }
-        }
-    </script>
+
 @endsection

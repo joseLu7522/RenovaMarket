@@ -106,7 +106,10 @@ class StoreProductController extends Controller
         $query = StoreProduct::query();
 
         if ($request->has('category') && $request->category != 'Todas las categorías') {
+            $selectedCategory = $request->category;
             $query->where('category', $request->category);/*SACA LA CATEGORIA SELECCIONADA*/
+        } else {
+            $selectedCategory = null;
         }
 
 
@@ -126,7 +129,7 @@ class StoreProductController extends Controller
             }
         }
         $storeProducts = $query->paginate(40);
-        return view('online_store.index', compact('storeProducts'));
+        return view('online_store.index', compact('storeProducts', 'selectedCategory'));
     }
     public function rate(Request $request, $storeProduct)/*FUNCION QUE GESTIONA LA VALORACION DE LOS PRODUCTOS*/
     {

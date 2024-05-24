@@ -11,22 +11,17 @@
     "Cerrar sesión":"",
     "Iniciar Sesión":"",
     "Registrarse":"",
-
     "¡Bienvenido a RenovaMarket! Tu destino confiable para comprar y vender una amplia variedad de productos de segunda mano.":"",
     "Explora nuestro catálogo diverso y únete a una comunidad de compradores y vendedores apasionados. ¡Encuentra la tuya hoy!":"",
-
     "¡Bienvenido a RenovaMarket!":"",
     "¡Dale una nueva vida a los objetos que ya no utilizas! En RenovaMarket, creemos en el valor de la reutilización y te ofrecemos una plataforma segura y fácil de usar para":"",
     "vender tus productos de segunda mano. Al mismo tiempo, puedes descubrir tesoros escondidos que otros han puesto a la venta. ¡Únete a nosotros y forma parte de la economía circular!":"",
-
     "¡Descubre nuestra variedad de productos de segunda mano y nuevos!":"",
     "En RenovaMarket, no solo encontrarás una amplia gama de productos de segunda mano, sino también una selección de productos nuevos de alta calidad.":"",
     "Ya sea que estés buscando un libro raro, un mueble vintage o un gadget tecnológico nuevo, seguro que lo encontrarás en nuestra plataforma. ¡Explora y descubre tus próximas adquisiciones!":"",
-
     "¡Únete a nuestra comunidad y encuentra lo que necesitas!":"",
     "RenovaMarket es más que una plataforma de compra y venta, es una comunidad de personas que valoran la reutilización y el intercambio. Al unirte a nosotros, no solo tendrás la oportunidad":"",
     "de comprar y vender, sino también de conectar con otros usuarios, compartir tus intereses y contribuir a un consumo más sostenible. ¡Únete a RenovaMarket y encuentra exactamente lo que necesitas!":"",
-
     "Categorías":"",
     "Buscar":"",
     "Todas las categorías":"",
@@ -38,19 +33,16 @@
     "Ordenar por precio":"",
     "Mayor a menor":"",
     "Menor a mayor":"",
-
     "Está seguro de eliminar este producto":"",
     "Sí":"",
     "No":"",
     "Cantidad":"",
-
     "Nombre":"",
     "Descripción":"",
     "Precio":"",
     "Categoría":"",
     "Imagen":"",
     "Añadir producto":"",
-
     "El nombre del producto es obligatorio.":"",
     "El nombre del producto debe ser texto.": "",
     "El nombre del producto debe tener al menos 4 caracteres.": "",
@@ -147,13 +139,18 @@
     "Ir a la página principal":"",
     "Compra-Venta":"",
     "Carrito":"",
-
     "Iniciar sesión":"",
     "Create una cuenta!":"",
     "y disfruta de nuestra maravillosa comunidad.":"",
     "Nombre de usuario":"",
     "CREAR CUENTA":"",
-    "Ya tienes cuenta?":""
+    "Ya tienes cuenta?":"",
+    "INICIAR SESIÓN":"",
+    "Usuario":"",
+    "¿No tienes cuenta aún?":"",
+    "BIENVENIDO A NUESTRA COMUNIDAD!":"",
+    "Recordar inicio de sesión":"",
+    "Error al acceder a la aplicación":""
 
 
 }

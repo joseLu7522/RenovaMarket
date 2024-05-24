@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('wishlist_storage', function (Blueprint $table) {
-            $table->longText('id')->index();
-            $table->longText('wishlist_data');
+            $table->longText('id')->index()->onDelete('cascade');
+            $table->longText('wishlist_data')->onDelete('cascade');
             $table->timestamps();
         });
     }

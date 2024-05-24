@@ -1,6 +1,6 @@
 <!--MUESTRA LOS MENSAJES DEL CHAT Y PUEDES INTERCAMBIAR MENSAJES CON EL USUARIO-->
 @extends('layout')
-@section('title',  __('Mensajes del Producto'))
+@section('title', __('Mensajes del Producto'))
 @section('content')
 
 

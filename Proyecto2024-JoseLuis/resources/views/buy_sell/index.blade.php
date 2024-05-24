@@ -4,13 +4,7 @@
 @section('content')
 
     <div class="container">
-        @if (session()->has('success_msg'))
-            <!--MENSAJE DE COMPRA REALIZADA-->
-            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                {{ __(session()->get('success_msg')) }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+
         <!--INICIO DEL NAVBAR DE LOS FILTROS-->
         <nav class="navbar navbar-expand-lg navbar-dark product-navbar-custom mt-5 mb-4">
             <div class="container-fluid mx-5">
@@ -22,25 +16,31 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="navbar-brand dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ __('Categorías') }}
+                            <a class="navbar-brand dropdown-toggle d-flex align-items-center" href="#"
+                                id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                @if (isset($selectedCategory))
+                                    {{ __($selectedCategory) }}
+                                @else
+                                    {{ __('Categorías') }}
+                                @endif
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item"
+                            <div class="dropdown-menu dropdown-menu-center" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Todas las categorías' ? 'active' : '' }}"
                                     href="{{ route('userProducts.filterAndSort', ['category' => 'Todas las categorías']) }}">{{ __('Todas las categorías') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Electrodomésticos' ? 'active' : '' }}"
                                     href="{{ route('userProducts.filterAndSort', ['category' => 'Electrodomésticos']) }}">{{ __('Electrodomésticos') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Moda y accesorios' ? 'active' : '' }}"
                                     href="{{ route('userProducts.filterAndSort', ['category' => 'Moda y accesorios']) }}">{{ __('Moda y accesorios') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Móviles' ? 'active' : '' }}"
                                     href="{{ route('userProducts.filterAndSort', ['category' => 'Móviles']) }}">{{ __('Móviles') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Muebles' ? 'active' : '' }}"
                                     href="{{ route('userProducts.filterAndSort', ['category' => 'Muebles']) }}">{{ __('Muebles') }}</a>
-                                <a class="dropdown-item"
+                                <a class="dropdown-item {{ isset($selectedCategory) && $selectedCategory == 'Informática' ? 'active' : '' }}"
                                     href="{{ route('userProducts.filterAndSort', ['category' => 'Informática']) }}">{{ __('Informática') }}</a>
                             </div>
                         </li>
+
                         <li class="nav-item mx-3">
                             <a class="btn nav-link"
                                 href="{{ route('userProducts.filterAndSort', ['sort' => 'price_desc']) }}">{{ __('Ordenar por precio') }}
@@ -105,8 +105,8 @@
                                             <div class="form-group my-1">
                                                 <label
                                                     for="cardName"><strong>{{ __('Nombre del titular') }}</strong></label>
-                                                <input type="text" class="form-control" id="cardName"
-                                                    name="cardName" placeholder="{{ __('Nombre del titular') }}"
+                                                <input type="text" class="form-control" id="cardName" name="cardName"
+                                                    placeholder="{{ __('Nombre del titular') }}"
                                                     value="{{ Auth::user()->name }}" readonly>
                                             </div>
                                             <?php
@@ -227,5 +227,18 @@
             </div>
         </div>
     </div>
-
+    @if (session()->has('success_msg'))
+        <!-- POP UP DE COMPRA REALIZADA-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: '{{ __('Se ha realizado la compra con éxito!') }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+        </script>
+    @endif
 @endsection

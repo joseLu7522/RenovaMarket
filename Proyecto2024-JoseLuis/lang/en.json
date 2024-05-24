@@ -152,7 +152,14 @@
     "y disfruta de nuestra maravillosa comunidad.":"and enjoy our wonderful community",
     "Nombre de usuario":"Username",
     "CREAR CUENTA":"CREATE ACCOUNT",
-    "Ya tienes cuenta?":"Already have an account?"
+    "Ya tienes cuenta?":"Already have an account?",
+    "INICIAR SESIÓN":"LOGIN",
+    "Usuario":"User",
+    "¿No tienes cuenta aún?":"Don't have an account yet?",
+    "BIENVENIDO A NUESTRA COMUNIDAD!":"WELCOME TO OUR COMMUNITY",
+    "Recordar inicio de sesión":"Remember login",
+    "Error al acceder a la aplicación":"Error when accessing the application"
+
 
 
 }

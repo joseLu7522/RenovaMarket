@@ -46,8 +46,6 @@
         </div>
     </div>
     @if (session()->has('success_purchase'))
-        <!-- SweetAlert2 Script -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         <!-- Pop-up de JavaScript -->
         <script>

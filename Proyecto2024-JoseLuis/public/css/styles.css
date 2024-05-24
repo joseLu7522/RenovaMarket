@@ -113,8 +113,34 @@ header {
     height: auto;
 }
 /*--------------------------INICIAR SESIÓN------------------------------*/
+.image-container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.image-overlay h3 {
+    margin: 0;
+    font-weight: bold;
+}
 /*--------------------CARRITO Y PASARELA DE PAGO-----------------------*/
 
 .card-icon {
