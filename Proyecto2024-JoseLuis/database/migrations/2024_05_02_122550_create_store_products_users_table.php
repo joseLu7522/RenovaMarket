@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('store_products_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->onDelete('cascade');
-            $table->foreignId('store_product_id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('store_product_id')->constrained()->onDelete('cascade');
             $table->integer('rating')->nullable();
             $table->unique(['user_id','store_product_id']);
         });

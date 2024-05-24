@@ -11,7 +11,7 @@
                 <div class="card" id="chat2">
                     <div class="card-header d-flex justify-content-between align-items-center p-3">
                         <div class="d-flex align-items-center">
-                            <img src="/storage/userProducts/{{ $product->name }}.png" alt="Producto"
+                            <img src="/storage/userProducts/{{ $product->user->name }}/{{ $product->name }}.png" alt="Producto"
                                 class="chat-product-image">
                             <div class="ms-3">
                                 <h5 class="mb-0">{{ $product->name }}</h5>

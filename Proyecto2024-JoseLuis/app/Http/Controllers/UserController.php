@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\DatabaseStorageModel;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SignupRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class UserController extends Controller
 {
@@ -62,8 +66,13 @@ class UserController extends Controller
     {
 
         if (Auth::user() && Auth::id() === $user->id) {
+
+            Storage::deleteDirectory("public/userProducts/{$user->name}");
+
             $imagePath = public_path('storage/usersProfile/' . $user->name . '.png');
             $user->delete();
+
+
 
             if (file_exists($imagePath)) {
                 unlink($imagePath);
@@ -75,3 +84,4 @@ class UserController extends Controller
     }
 
 }
+

@@ -54,7 +54,7 @@
                 <div class="col-md-3 mb-4 product-card">
                     <div class="card store_product h-100">
 
-                        <img src="/storage/userProducts/{{ $product->name }}.png" class="card-img-top product-image mt-4"
+                        <img src="/storage/userProducts/{{$user->name}}/{{ $product->name }}.png" class="card-img-top product-image mt-4"
                             alt="Producto">
                         <div class="card-body">
                             <h5 class="card-title product-name">{{ $product->name }}</h5>

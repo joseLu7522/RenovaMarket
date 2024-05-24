@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <!--FIN DE POP UP COMPRAR PRODUCTO -->
-                        <img src="/storage/userProducts/{{ $userProduct->name }}.png"
+                        <img src="/storage/userProducts/{{ $userProduct->user->name }}/{{ $userProduct->name }}.png"
                             class="card-img-top product-image mt-4" alt="Producto">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title product-name">{{ $userProduct->name }}</h5>

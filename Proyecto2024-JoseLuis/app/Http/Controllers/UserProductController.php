@@ -33,6 +33,7 @@ class UserProductController extends Controller
     public function store(UserProductRequest $request)/*GUARDA UN PRODUCTO EN LA BD*/
     {
         if (Auth::user()) {
+            $userName = Auth::user()->name;
 
             $userProduct = new UserProduct();
             $userProduct->name = ucfirst(mb_strtolower($request->input('name')));
@@ -40,7 +41,7 @@ class UserProductController extends Controller
             $userProduct->price = $request->input('price', 0);
             $userProduct->category = $request->input('category');
             $userProduct->user_id = Auth::user()->id;
-            $userProduct->image = $request->file('image')->storeAs('public/userProducts', $userProduct->name . '.png');
+            $userProduct->image = $request->file('image')->storeAs("public/userProducts/$userName", $userProduct->name . '.png');
 
             $userProduct->save();
 
@@ -63,9 +64,12 @@ class UserProductController extends Controller
 
     public function update(UserProductRequest $request, UserProduct $userProduct)/*ACTUALIZA LOS DATOS DEL PRODUCTO MODIFICADO*/
     {
+
         if (Auth::user() && Auth::id() == $userProduct->user_id) {
 
-            $imagePath = public_path('storage/userProducts/' . $userProduct->name . '.png');
+            $userName = Auth::user()->name;
+
+            $imagePath = storage_path('app/public/userProducts/' . Auth::user()->name . '/' . $userProduct->name . '.png');
             if (file_exists($imagePath)) {/*ELIMINA LA IMAGEN PARA LUEGO VOLVERLA A CARGAR*/
                 unlink($imagePath);
             }
@@ -74,7 +78,7 @@ class UserProductController extends Controller
             $userProduct->description = ucfirst(mb_strtolower($request->input('description')));
             $userProduct->category = $request->input('category');
 
-            $userProduct->image = $request->file('image')->storeAs('public/userProducts', $userProduct->name . '.png');
+            $userProduct->image = $request->file('image')->storeAs("public/userProducts/$userName", $userProduct->name . '.png');
 
             $userProduct->save();
 
@@ -90,8 +94,9 @@ class UserProductController extends Controller
     {
         if (Auth::check() && Auth::user()->rol == 'admin' || Auth::user()->id === $userProduct->user_id) {
 
-            $imagePath = public_path('storage/userProducts/' . $userProduct->name . '.png');
+            $imagePath = storage_path('app/public/userProducts/' . Auth::user()->name . '/' . $userProduct->name . '.png');
             $userProduct->delete();
+
             if (file_exists($imagePath)) {/*ELIMINA LA IMAGEN DEL STORAGE*/
                 unlink($imagePath);
             }

@@ -16,7 +16,7 @@
                             <a href="{{ route('messages.show', $message->user_product->id) }}" class="link-message">
                                 <div class="row align-items-center">
                                     <div class="col-md-1">
-                                        <img src="/storage/userProducts/{{ $message->user_product->name }}.png"
+                                        <img src="/storage/userProducts/{{ $message->user_product->user->name }}/{{ $message->user_product->name }}.png"
                                             alt="Producto" class="chat-product-image">
                                     </div>
                                     <div class="col-md-7">
