@@ -27,7 +27,7 @@ class SignupRequest extends FormRequest
         switch ($this->method()) {
             case 'POST':
                 $rules['email'] = 'required|email|min:10|max:50|unique:users';
-                $rules['name'] = 'required|string|min:4|max:20|regex:/^(?!\\d)[\\w.\\-]+$/|unique:users';
+                $rules['name'] = 'required|string|min:4|max:20|regex:/^(?!\\d)[\\w.\\s\\-]+$/|unique:users';
                 break;
             case 'PUT':
                 $rules['email'] = [
@@ -42,7 +42,7 @@ class SignupRequest extends FormRequest
                     'string',
                     'min:4',
                     'max:20',
-                    'regex:/^(?!\\d)[\\w.\\-]+$/',
+                    'regex:/^(?!\\d)[\\w.\\s\\-]+$/',
                     Rule::unique('users')->ignore($this->user->id)
                 ];
                 break;
@@ -61,7 +61,7 @@ class SignupRequest extends FormRequest
                 }
             },
         ];
-        $rules['profile_photo'] = 'nullable|image|mimes:jpeg,png,jpg|max:2048';
+        $rules['profile_photo'] = 'required|image|mimes:jpeg,png,jpg|max:2048';
         return $rules;
     }
 
@@ -84,6 +84,7 @@ class SignupRequest extends FormRequest
             'password.min' => 'El campo contraseña debe tener al menos 8 caracteres.',
             'birthday.required' => 'El campo fecha de nacimiento es obligatorio.',
             'birthday.date' => 'El campo fecha de nacimiento debe ser una fecha válida.',
+            'profile_photo.required' => 'La foto de perfil es obligatoria.',
             'profile_photo.image' => 'La foto de perfil debe ser una imagen.',
             'profile_photo.mimes' => 'La foto de perfil debe ser de tipo JPEG, PNG o JPG.',
             'profile_photo.max' => 'La foto de perfil no puede superar los 2MB.',

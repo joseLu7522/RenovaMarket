@@ -43,7 +43,7 @@
                                             <button
                                                 class="btn position-absolute end-0 top-50 translate-middle-y border-0 bg-transparent"
                                                 type="button" id="showPasswordBtn">
-                                                <i class="bi bi-eye-slash"></i>
+                                                <i class="bi bi-eye"></i>
                                             </button>
                                         </div>
                                         @error('password')

@@ -30,7 +30,7 @@
                                                 <input type="password" id="password" name="password" class="form-control"
                                                     placeholder="{{ __('Contraseña') }}" value="{{ old('password') }}" />
                                                 <button class="btn btn-outline-secondary" type="button"
-                                                    id="showPasswordBtn"><i class="bi bi-eye-slash"></i></button>
+                                                    id="showPasswordBtn"><i class="bi bi-eye"></i></button>
                                             </div>
                                             @if (isset($error))
                                                 <div class="alert alert-danger mt-1 mb-1 small">

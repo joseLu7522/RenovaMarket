@@ -5,10 +5,10 @@ const showPasswordBtn = document.getElementById("showPasswordBtn");
 showPasswordBtn.addEventListener("click", () => {
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        showPasswordBtn.innerHTML = '<i class="bi bi-eye"></i>';
+        showPasswordBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
     } else {
         passwordInput.type = "password";
-        showPasswordBtn.innerHTML = '<i class="bi bi-eye-slash"></i>';
+        showPasswordBtn.innerHTML = '<i class="bi bi-eye"></i>';
     }
 });
 

@@ -51,7 +51,7 @@
                                 <div class="input-group">
                                     <input type="password" class="form-control" id="password" name="password">
                                     <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn"><i
-                                            class="bi bi-eye-slash"></i></button>
+                                            class="bi bi-eye"></i></button>
                                 </div>
                                 <!--ERRORES DE LA CONTRASEÑA-->
                                 @error('password')
