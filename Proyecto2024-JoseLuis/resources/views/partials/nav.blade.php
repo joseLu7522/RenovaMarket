@@ -46,7 +46,7 @@
             </ul><!--FIN ENLACES HEADER-->
             <ul class="navbar-nav">
                 @auth
-                    @if (request()->routeIs('storeProducts.index') || request()->routeIs('cart.index'))
+                    @if (request()->routeIs('storeProducts.index') || request()->routeIs('cart.index') || request()->has('category') || request()->has('sort') || request()->has('search'))
                         <!--SI LA PAGINA ES LA DE PRODUCTOS DE TIENDA MUESTRA EL CARRITO-->
                         <a class="nav-link" href="{{ route('cart.index') }}">
                             <i class="bi bi-cart4"></i>
